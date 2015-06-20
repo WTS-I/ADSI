@@ -21,7 +21,6 @@ public class JAXRSDoNothingResource {
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
     public JSONObject get(@PathParam("id") String id){
-		System.out.println(id);
 		return EMPTY;
 	}
 }

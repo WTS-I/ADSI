@@ -25,7 +25,7 @@ public class JettyEmbeddedServer {
 	 * port=8080 
 	 * root=/ 
 	 * servlet=org.glassfish.jersey.servlet.ServletContainer
-	 * jersey.config.server.provider.packages=com.wtsintegration.asdi.resources
+	 * jersey.config.server.provider.packages=com.wtsintegration.adsi.resources
 	 */
 	public static void main(String[] args) throws Throwable {
 		Map<String,String> config = getConfigurationMap(args);
