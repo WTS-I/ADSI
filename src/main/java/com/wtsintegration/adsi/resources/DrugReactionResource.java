@@ -41,11 +41,28 @@ public class DrugReactionResource {
 	private static final List<Reaction> REACTIONS = new ArrayList<Reaction>();
 	
 	private static final Drug IBUPROFEN = new Drug("IBUPROFEN");
+	private static final Drug LORATADINE = new Drug("LORATADINE");
+	private static final Drug ZAROXOLYN = new Drug("ZAROXOLYN");
+	private static final Drug ERYTHROMYCIN = new Drug("ERYTHROMYCIN");
+	private static final Drug ESOMEPRAZOLE = new Drug("ESOMEPRAZOLE");
 	
 	private static final Reaction RHINORRHOEA = new Reaction("RHINORRHOEA");
+	private static final Reaction HEMOPTYSIS = new Reaction("HEMOPTYSIS");
+	private static final Reaction ANAPHYLAXIS = new Reaction("ANAPHYLAXIS");
+	private static final Reaction PRURITIS = new Reaction("PRURITIS");
+	private static final Reaction EPISTAXIS = new Reaction("EPISTAXIS");
 	
 	static {
 		DRUGS.add(IBUPROFEN);
+		DRUGS.add(LORATADINE);
+		DRUGS.add(ZAROXOLYN);
+		DRUGS.add(ERYTHROMYCIN);
+		DRUGS.add(ESOMEPRAZOLE);
+		
 		REACTIONS.add(RHINORRHOEA);
+		REACTIONS.add(HEMOPTYSIS);
+		REACTIONS.add(ANAPHYLAXIS);
+		REACTIONS.add(PRURITIS);
+		REACTIONS.add(EPISTAXIS);
 	}
 }
