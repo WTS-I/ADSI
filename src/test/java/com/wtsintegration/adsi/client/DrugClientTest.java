@@ -56,4 +56,30 @@ public class DrugClientTest extends TestCase {
 		assertNotNull(count);
 		assertTrue(count == 0);
 	}
+	
+	public void testGetCountByDrugExcludeReaction() {
+		DrugClient client = new DrugClient();
+		Integer count = null;
+		
+		count = client.getCountByDrugExcludeReaction(IBUPROFEN, RHINORRHOEA);
+		assertNotNull(count);
+		assertTrue(count > -1);
+		
+		count = client.getCountByDrugExcludeReaction("XXXXX", "XXXXX");
+		assertNotNull(count);
+		assertTrue(count == 0);
+	}
+	
+	public void testGetCountByReactionExcludeDrug() {
+		DrugClient client = new DrugClient();
+		Integer count = null;
+		
+		count = client.getCountByReactionExcludeDrug(RHINORRHOEA, IBUPROFEN);
+		assertNotNull(count);
+		assertTrue(count > -1);
+		
+		count = client.getCountByReactionExcludeDrug("XXXXX", "XXXXX");
+		assertNotNull(count);
+		assertTrue(count == 0);
+	}
 }

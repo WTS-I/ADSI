@@ -119,4 +119,34 @@ public class DrugClient {
 		
 		return null;
 	}
+	
+	public Integer getCountByDrugExcludeReaction(Drug drug, Reaction reaction) {
+		return getCountByDrugExcludeReaction(drug.getName(), reaction.getPreferredTerm());
+	}
+	
+	public Integer getCountByDrugExcludeReaction(String drug, String reaction) {
+		
+		Integer totalForDrug = getCountByDrug(drug);
+		Integer totalForDrugAndReaction = getCountByDrugAndReaction(drug, reaction);
+		if (totalForDrug != null && totalForDrugAndReaction != null) {
+			return totalForDrug - totalForDrugAndReaction;
+		} else {
+			return null;
+		}
+	}
+	
+	public Integer getCountByReactionExcludeDrug(Reaction reaction, Drug drug) {
+		return getCountByReactionExcludeDrug(reaction.getPreferredTerm(), drug.getName());
+	}
+	
+	public Integer getCountByReactionExcludeDrug(String reaction, String drug) {
+		
+		Integer totalForReaction = getCountByReaction(reaction);
+		Integer totalForDrugAndReaction = getCountByDrugAndReaction(drug, reaction);
+		if (totalForReaction != null && totalForDrugAndReaction != null) {
+			return totalForReaction - totalForDrugAndReaction;
+		} else {
+			return null;
+		}
+	}
 }
