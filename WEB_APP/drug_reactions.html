@@ -22,7 +22,7 @@
 				<ul class="right button-group">
 					<li><a href="./index.html" class="button">Home</a></li>
 					<li><a href="#" class="button">Contact Us</a></li>
-					<li><a href="#" class="button"><img src="./img/help.png" width="15px" height="15px"> Help</a></li>
+					<li><a href="#" class="button"><img src="./img/help.png" width="12px" height="12px"> Help</a></li>
 				</ul>
 			</div>
 		</div>   
@@ -31,20 +31,21 @@
 		<div class="row">     
 			<div class="large-9 push-3 columns">
 				<h3>Drug &amp; Reaction Reports</h3>
-
-				<p>Sampe report</p>
-				<p>Drug</p>
-				<p>Reaction</p>
-				<p>#1</p>
-				<p>#2</p>
-				<p>#3</p>
-
-				<p id="">Ground round pastrami pork loin tenderloin jerky. Jerky spare ribs biltong, ham hock ham capicola pork. Jerky turducken pork, meatloaf sausage capicola swine corned beef turkey short loin. Tongue prosciutto pork loin, ground round spare ribs venison kielbasa strip steak.</p>
-
-				<p></p>
-
-				<p>Prosciutto ball tip filet mignon andouille frankfurter chicken rump sausage meatball. Filet mignon meatloaf ground round andouille ham hock pork. Bresaola short loin meatball chuck hamburger pig. Turkey venison chuck, tongue fatback tail swine jerky corned beef shank kielbasa prosciutto ribeye ham tri-tip. Rump bacon pork belly meatloaf shoulder short loin meatball kielbasa pork loin tongue bresaola brisket corned beef jowl prosciutto. Beef ribs shankle short ribs pork belly corned beef fatback pork chop tongue biltong boudin strip steak sirloin meatloaf pancetta.</p>
-
+				<p>&nbsp;</p>
+				<p>Drug: <span id="showDrug"></span></p>
+				<p>Reaction: <span id="showReaction"></span></p>
+				<p>Proportional Reporting Ratio: <span id="PRR"></span></p>
+				<p>Relative Reporting Ratio: <span id="RRR"></span></p>
+				<p>Reporting Odds Ratio: <span id="ROR"></span></p>
+				<div class="">                
+				The proportional reporting ratio (PRR) is a statistic that is used to summarize the extent to which a particular adverse 
+				event is reported for individuals taking a specific drug, compared to the frequency at which the same adverse event is reported for patients 
+				taking some other drug (or who are taking any drug in a specified class of drugs). 
+				<br><br>A PRR greater than 1 suggests that the adverse event is more commonly reported for individuals taking the drug of interest, relative 
+				to the comparison drugs. This could indicate that the adverse event is caused by the drug of interest and therefore a "side effect",
+				although a PRR exceeding 1 could also reflect sampling variation in the data, reporting errors, biased reporting, multiple reports of the 
+				same case or the same patient, or a number of other causes.
+				</div>
 			</div>
 			<div class="large-3 pull-9 columns">
 				<ul class="side-nav">
@@ -114,9 +115,7 @@
   
 			var myDrugCollection = new drugCollection;
 			myDrugCollection.fetch(); // this makes a call to the server and populates the collection based on the response.	
-			
-			
-			
+					
 			
 			// We extend the Backbone.Model prototype to build our own
 			var reactionModel = Backbone.Model.extend({
@@ -127,7 +126,7 @@
 			});	
 
 			var reactionCollection = Backbone.Collection.extend({
-				model : drugModel,
+				model : reactionModel,
 				url : "http://localhost:8080/adsi/1.0/reactions",
 				parse : function(response){
 					var self = this;
@@ -141,10 +140,48 @@
 			var myReactionCollection = new reactionCollection;
 			myReactionCollection.fetch(); // this makes a call to the server and populates the collection based on the response.	
 			
-			$('#myButton').click(function () {
-				alert("button was clicked");
+			//{"drug":{"name":"[XXX]"},"proportionalReportingRatio":1.7,"reaction":{"preferredTerm":"[YYY]"},"relativeReportingRatio":1.42,"reportingOddsRatio":1.1}
+			
+			// We extend the Backbone.Model prototype to build our own
+			var reportModel = Backbone.Model.extend({
+			  // We can pass it default values.
+				defaults : {
+					drug : '',
+					proportionalReportingRatio : 0,
+					preferredTerm: '',
+					relativeReportingRatio : 0,
+					reportingOddsRatio : 0					
+				}
+			});	
+			var reportCollection = Backbone.Collection.extend({
+				model : reportModel,
+				url : function(){
+					var d = $("#drugOption").val();
+					var r = $("#reactionOption").val();
+					var url = "http://localhost:8080/adsi/1.0/correlations?drug="+d+"&reaction="+r;
+					return url;
+				},
+				parse : function(response){
+					//alert('parse'+JSON.stringify(response));
+					$("#PRR").html(response.proportionalReportingRatio);
+					$("#RRR").html(response.relativeReportingRatio);
+					$("#ROR").html(response.reportingOddsRatio);
+					return response;
+				}
 			});
-
+			
+			$('#myButton').click(function () {	
+				selectedDrug = $("#drugOption").val();
+				selectedReaction = $("#reactionOption").val();
+				var myReportCollection = new reportCollection;
+				var s = myReportCollection.fetch({ 
+				    data: { proportionalReportingRatio: 2.7 },
+				    processData: true
+				});
+				var selectedDrug=$("#showDrug").html(selectedDrug);
+				var selectedReaction=$("#showReaction").html(selectedReaction);
+			}); 
+			 
  
 		</script>
 	</body>

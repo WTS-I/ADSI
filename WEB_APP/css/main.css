@@ -11,3 +11,7 @@ hr{
 html,body {
   font-size: 80%; 
 }
+
+.row{
+	background-color:#ffffff;
+}
