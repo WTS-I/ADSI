@@ -13,7 +13,7 @@ import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.DrugReactionCorrelation;
 import com.wtsintegration.adsi.model.Reaction;
 
-@Path("/adsi/1.0/")
+@Path("/adsi/1.0")
 public class DrugReactionResource {
 
 	@GET
