@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class Response {
 
-	@XmlElement(required=true)
+	@XmlElement
 	private Meta meta;
-	@XmlElement(required=true)
+	@XmlElement
 	private List<Result> results;
 
 	public Meta getMeta() {
@@ -18,5 +18,13 @@ public class Response {
 
 	public void setMeta(Meta meta) {
 		this.meta = meta;
+	}
+
+	public List<Result> getResults() {
+		return results;
+	}
+
+	public void setResults(List<Result> results) {
+		this.results = results;
 	}
 }
