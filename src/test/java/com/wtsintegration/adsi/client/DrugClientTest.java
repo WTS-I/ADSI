@@ -1,126 +1,143 @@
 package com.wtsintegration.adsi.client;
 
-import java.util.List;
-
-import junit.framework.TestCase;
-
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
+import junit.framework.TestCase;
 
+/**
+ * Created by zmelnick on 6/23/15.
+ */
 public class DrugClientTest extends TestCase {
+    DrugClient client = DrugClient.INSTANCE;
+    private static final Drug IBUPROFEN = new Drug("IBUPROFEN");
+    private static final Reaction RHINORRHOEA = new Reaction("RHINORRHOEA");
 
-	private static final Drug IBUPROFEN = new Drug("IBUPROFEN");
-	private static final Reaction RHINORRHOEA = new Reaction("RHINORRHOEA");
-	
-	public void testGetCountAllRecords() {
-		DrugClient client = new DrugClient();
-		
-		Integer count = client.getCountAllRecords();
-		assertNotNull(count);
-		assertTrue(count > -1);
-	}
-	
-	public void testGetCountByDrug() {
-		DrugClient client = new DrugClient();
-		Integer count = null;
-		
-		count = client.getCountByDrug(IBUPROFEN);
-		assertNotNull(count);
-		assertTrue(count > -1);
-		
-		count = client.getCountByDrug("XXXXX");
-		assertNotNull(count);
-		assertTrue(count == 0);
-	}
-	
-	public void testGetCountByReaction() {
-		DrugClient client = new DrugClient();
-		Integer count = null;
-		
-		count = client.getCountByReaction(RHINORRHOEA);
-		assertNotNull(count);
-		assertTrue(count > -1);
-		
-		count = client.getCountByReaction("XXXXX");
-		assertNotNull(count);
-		assertTrue(count == 0);
-	}
-	
-	public void testGetCountByDrugAndReaction() {
-		DrugClient client = new DrugClient();
-		Integer count = null;
-		
-		count = client.getCountByDrugAndReaction(IBUPROFEN, RHINORRHOEA);
-		assertNotNull(count);
-		assertTrue(count > -1);
-		
-		count = client.getCountByDrugAndReaction("XXXXX", "XXXXX");
-		assertNotNull(count);
-		assertTrue(count == 0);
-	}
-	
-	public void testGetCountByDrugExcludeReaction() {
-		DrugClient client = new DrugClient();
-		Integer count = null;
-		
-		count = client.getCountByDrugExcludeReaction(IBUPROFEN, RHINORRHOEA);
-		assertNotNull(count);
-		assertTrue(count > -1);
-		
-		count = client.getCountByDrugExcludeReaction("XXXXX", "XXXXX");
-		assertNotNull(count);
-		assertTrue(count == 0);
-	}
-	
-	public void testGetCountByReactionExcludeDrug() {
-		DrugClient client = new DrugClient();
-		Integer count = null;
-		
-		count = client.getCountByReactionExcludeDrug(RHINORRHOEA, IBUPROFEN);
-		assertNotNull(count);
-		assertTrue(count > -1);
-		
-		count = client.getCountByReactionExcludeDrug("XXXXX", "XXXXX");
-		assertNotNull(count);
-		assertTrue(count == 0);
-	}
-	
-	public void testGetCountExcludeDrugAndReaction() {
-		DrugClient client = new DrugClient();
-		Integer count = null;
-		
-		count = client.getCountExcludeDrugAndReaction(IBUPROFEN, RHINORRHOEA);
-		assertNotNull(count);
-		assertTrue(count > -1);
-		
-		count = client.getCountExcludeDrugAndReaction("XXXXX", "XXXXX");
-		assertNotNull(count);
-		assertTrue(count.equals(client.getCountAllRecords()));
-	}
-	
-	public void testGetTopDrugs() {
-		DrugClient client = new DrugClient();
-		List<Drug> drugs = null;
-		
-		drugs = client.getTopDrugs(10);
-		assertNotNull(drugs);
-		assertTrue(drugs.size() == 10);
-		
-		drugs = client.getTopDrugs(-1);
-		assertNotNull(drugs);
-		assertTrue(drugs.size() == 0);
-	}
-	
-	public void testGetTopReactions() {
-		DrugClient client = new DrugClient();
-		List<Reaction> reaction = null;
-		
-		reaction = client.getTopReactions(10);
-		assertNotNull(reaction);
-		assertTrue(reaction.size() == 10);
-		
-		reaction = client.getTopReactions(-1);
-		assertNotNull(reaction);
-		assertTrue(reaction.size() == 0);
-	}
+    public void setUp() throws Exception {
+        super.setUp();
+
+    }
+
+    public void tearDown() throws Exception {
+
+    }
+
+    public void testGetCountAllRecords() throws Exception {
+        Integer count = client.getCountAllRecords();
+        assertNotNull(count);
+        assertTrue(count > -1);
+    }
+
+    public void testGetCountByDrug() throws Exception {
+        DrugClient client = DrugClient.INSTANCE;
+        Integer count;
+
+        count = client.getCountByDrug(IBUPROFEN);
+        assertNotNull(count);
+        assertTrue(count > -1);
+
+        count = client.getCountByDrug("XXXXX");
+        assertNotNull(count);
+        assertTrue(count == 0);
+
+    }
+
+    public void testGetCountByDrug1() throws Exception {
+
+    }
+
+    public void testGetCountByReaction() throws Exception {
+        DrugClient client = DrugClient.INSTANCE;
+        Integer count;
+
+        count = client.getCountByReaction(RHINORRHOEA);
+        assertNotNull(count);
+        assertTrue(count > -1);
+
+        count = client.getCountByReaction("XXXXX");
+        assertNotNull(count);
+        assertTrue(count == 0);
+
+    }
+
+    public void testGetCountByReaction1() throws Exception {
+
+    }
+
+    public void testGetCountByDrugAndReaction() throws Exception {
+        DrugClient client = DrugClient.INSTANCE;
+        Integer count;
+
+        count = client.getCountByDrugAndReaction(IBUPROFEN, RHINORRHOEA);
+        assertNotNull(count);
+        assertTrue(count > -1);
+
+        count = client.getCountByDrugAndReaction("XXXXX", "XXXXX");
+        assertNotNull(count);
+        assertTrue(count == 0);
+
+    }
+
+    public void testGetCountByDrugAndReaction1() throws Exception {
+
+    }
+
+    public void testGetTopDrugs() throws Exception {
+
+    }
+
+    public void testGetTopReactions() throws Exception {
+
+    }
+
+    public void testGetCountByDrugExcludeReaction() throws Exception {
+        DrugClient client = DrugClient.INSTANCE;
+        Integer count;
+
+        count = client.getCountByDrugExcludeReaction(IBUPROFEN, RHINORRHOEA);
+        assertNotNull(count);
+        assertTrue(count > -1);
+
+        count = client.getCountByDrugExcludeReaction("XXXXX", "XXXXX");
+        assertNotNull(count);
+        assertTrue(count == 0);
+
+    }
+
+    public void testGetCountByDrugExcludeReaction1() throws Exception {
+
+    }
+
+    public void testGetCountByDrugExcludeReaction2() throws Exception {
+
+    }
+
+    public void testGetCountByReactionExcludeDrug() throws Exception {
+        DrugClient client = DrugClient.INSTANCE;
+        Integer count;
+
+        count = client.getCountByReactionExcludeDrug(RHINORRHOEA, IBUPROFEN);
+        assertNotNull(count);
+        assertTrue(count > -1);
+
+        count = client.getCountByReactionExcludeDrug("XXXXX", "XXXXX");
+        assertNotNull(count);
+        assertTrue(count == 0);
+
+    }
+
+    public void testGetCountByReactionExcludeDrug1() throws Exception {
+
+    }
+
+    public void testGetCountByReactionExcludeDrug2() throws Exception {
+
+    }
+
+    public void testGetCountExcludeDrugAndReaction() throws Exception {
+
+    }
+
+    public void testGetCountExcludeDrugAndReaction1() throws Exception {
+
+    }
 }
