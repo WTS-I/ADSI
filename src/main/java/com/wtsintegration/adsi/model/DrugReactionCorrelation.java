@@ -6,6 +6,14 @@ public class DrugReactionCorrelation {
 
 	private Drug drug;
 	private Reaction reaction;
+
+	private BigDecimal total;
+	private BigDecimal totalForDrug;
+	private BigDecimal totalForReaction;
+	private BigDecimal totalForDrugAndReaction;
+	private BigDecimal totalForDrugExcludeReaction;
+	private BigDecimal totalForReactionExcludeDrug;
+	private BigDecimal totalExcludeDrugAndReaction;
 	
 	private BigDecimal reportingOddsRatio;
 	private BigDecimal proportionalReportingRatio;
@@ -64,5 +72,61 @@ public class DrugReactionCorrelation {
 	
 	public void setRelativeReportingRatio(BigDecimal relativeReportingRatio) {
 		this.relativeReportingRatio = relativeReportingRatio;
+	}
+
+	public BigDecimal getTotalForDrugAndReaction() {
+		return totalForDrugAndReaction;
+	}
+
+	public void setTotalForDrugAndReaction(BigDecimal totalForDrugAndReaction) {
+		this.totalForDrugAndReaction = totalForDrugAndReaction;
+	}
+
+	public BigDecimal getTotalForDrugExcludeReaction() {
+		return totalForDrugExcludeReaction;
+	}
+
+	public void setTotalForDrugExcludeReaction(BigDecimal totalForDrugExcludeReaction) {
+		this.totalForDrugExcludeReaction = totalForDrugExcludeReaction;
+	}
+
+	public BigDecimal getTotalForReactionExcludeDrug() {
+		return totalForReactionExcludeDrug;
+	}
+
+	public void setTotalForReactionExcludeDrug(BigDecimal totalForReactionExcludeDrug) {
+		this.totalForReactionExcludeDrug = totalForReactionExcludeDrug;
+	}
+
+	public BigDecimal getTotalExcludeDrugAndReaction() {
+		return totalExcludeDrugAndReaction;
+	}
+
+	public void setTotalExcludeDrugAndReaction(BigDecimal totalExcludeDrugAndReaction) {
+		this.totalExcludeDrugAndReaction = totalExcludeDrugAndReaction;
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		this.total = total;
+	}
+
+	public BigDecimal getTotalForDrug() {
+		return totalForDrug;
+	}
+
+	public void setTotalForDrug(BigDecimal totalForDrug) {
+		this.totalForDrug = totalForDrug;
+	}
+
+	public BigDecimal getTotalForReaction() {
+		return totalForReaction;
+	}
+
+	public void setTotalForReaction(BigDecimal totalForReaction) {
+		this.totalForReaction = totalForReaction;
 	}
 }

@@ -36,6 +36,15 @@ public class DrugCorrelationService {
 	
 	public DrugReactionCorrelation generateCorrelation() {
 		DrugReactionCorrelation correlation = new DrugReactionCorrelation(drug, reaction);
+		
+		correlation.setTotal(getTotal());
+		correlation.setTotalForDrug(getTotalForDrug());
+		correlation.setTotalForReaction(getTotalForReaction());
+		correlation.setTotalForDrugAndReaction(getTotalForDrugAndReaction());
+		correlation.setTotalForDrugExcludeReaction(getTotalForDrugExcludeReaction());
+		correlation.setTotalForReactionExcludeDrug(getTotalForReactionExcludeDrug());
+		correlation.setTotalExcludeDrugAndReaction(getTotalExcludeDrugAndReaction());
+		
 		correlation.setReportingOddsRatio(getROR());
 		correlation.setProportionalReportingRatio(getPRR());
 		correlation.setRelativeReportingRatio(getRRR());
