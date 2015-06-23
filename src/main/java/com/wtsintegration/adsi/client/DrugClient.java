@@ -13,14 +13,15 @@ import com.wtsintegration.adsi.client.jaxb.Result;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
 
-public class DrugClient {
+public enum DrugClient {
+	INSTANCE;
 	
 	private WebTarget webTarget;
 
 	private final static String HOST = "https://api.fda.gov";
 	private final static String PATH = "drug/event.json";
 	
-	public DrugClient() {
+	DrugClient() {
 		webTarget = ClientBuilder.newClient().target(HOST);
 	}
 	

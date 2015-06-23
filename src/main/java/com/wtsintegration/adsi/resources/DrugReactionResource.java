@@ -23,14 +23,14 @@ public class DrugReactionResource {
 	@GET
 	@Path("/drugs")
 	public List<Drug> getAllDrugs() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;
 		return client.getTopDrugs(DRUG_NUM);
 	}
 	
 	@GET
 	@Path("/reactions")
 	public List<Reaction> getAllReactions() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;
 		return client.getTopReactions(REACTION_NUM);
 	}
 	
@@ -42,34 +42,5 @@ public class DrugReactionResource {
 		}
 		DrugReactionCorrelation correlation = new DrugCorrelationService(new Drug(drug), new Reaction(reaction)).generateCorrelation();
 		return correlation;
-	}
-	
-	private static final List<Drug> DRUGS = new ArrayList<Drug>();
-	private static final List<Reaction> REACTIONS = new ArrayList<Reaction>();
-	
-	private static final Drug IBUPROFEN = new Drug("IBUPROFEN");
-	private static final Drug LORATADINE = new Drug("LORATADINE");
-	private static final Drug ZAROXOLYN = new Drug("ZAROXOLYN");
-	private static final Drug ERYTHROMYCIN = new Drug("ERYTHROMYCIN");
-	private static final Drug ESOMEPRAZOLE = new Drug("ESOMEPRAZOLE");
-	
-	private static final Reaction RHINORRHOEA = new Reaction("RHINORRHOEA");
-	private static final Reaction HEMOPTYSIS = new Reaction("HEMOPTYSIS");
-	private static final Reaction ANAPHYLAXIS = new Reaction("ANAPHYLAXIS");
-	private static final Reaction PRURITIS = new Reaction("PRURITIS");
-	private static final Reaction EPISTAXIS = new Reaction("EPISTAXIS");
-	
-	static {
-		DRUGS.add(IBUPROFEN);
-		DRUGS.add(LORATADINE);
-		DRUGS.add(ZAROXOLYN);
-		DRUGS.add(ERYTHROMYCIN);
-		DRUGS.add(ESOMEPRAZOLE);
-		
-		REACTIONS.add(RHINORRHOEA);
-		REACTIONS.add(HEMOPTYSIS);
-		REACTIONS.add(ANAPHYLAXIS);
-		REACTIONS.add(PRURITIS);
-		REACTIONS.add(EPISTAXIS);
 	}
 }
