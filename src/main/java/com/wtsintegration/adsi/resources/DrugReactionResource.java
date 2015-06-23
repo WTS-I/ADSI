@@ -18,6 +18,8 @@ public class DrugReactionResource {
 	
 	private static final int DRUG_NUM = 100;
 	private static final int REACTION_NUM = 100;
+	
+	private static final DrugClient INSTANCE = new DrugClient();
 
 	@GET
 	@Path("/drugs")
@@ -49,7 +51,7 @@ public class DrugReactionResource {
 		if(null == drug) {
 			throw new WebApplicationException("drug query parameter must be present");
 		}
-		List<Reaction> reactions = DrugClient.INSTANCE.getTopReactionsByDrug(new Drug(drug), 10);
+		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), 10);
 		return reactions;
 	}
 }

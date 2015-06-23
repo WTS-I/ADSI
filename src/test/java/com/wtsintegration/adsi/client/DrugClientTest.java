@@ -257,7 +257,11 @@ public class DrugClientTest extends TestCase {
     }
 
     public void testGetCountExcludeDrugAndReaction1() throws Exception {
-
+    	DrugClient spy = spy(client);
+        final Integer total = 1000;
+        final Integer totalForDrug = 100;
+        final Integer totalForReaction = 90;
+        final Integer totalForDrugAndReaction = 10;
         when(spy.getCountAllRecords()).thenReturn(total);
         when(spy.getCountByDrugAndReaction(IBUPROFEN.getName(), RHINORRHOEA.getPreferredTerm()))
                 .thenReturn(totalForDrugAndReaction);

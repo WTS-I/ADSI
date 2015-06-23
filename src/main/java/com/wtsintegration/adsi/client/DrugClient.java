@@ -17,9 +17,7 @@ import com.wtsintegration.adsi.client.jaxb.Response;
 import com.wtsintegration.adsi.client.jaxb.Result;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
-import com.wtsintegration.adsi.util.UserInterfaceAdapter;
 import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
-import com.wtsintegration.openfda.model.FdaPatientDrugResult;
 
 public class DrugClient {
 	private static final Logger log = Logger.getLogger(DrugClient.class);
