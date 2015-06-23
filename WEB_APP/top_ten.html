@@ -4,10 +4,9 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
-		<title>Reporting Ratios</title>
+		<title>Top Ten Drugs</title>
 		
 		<script src="./js/modernizr.js"></script>
-		
 		<link rel="stylesheet" href="./css/foundation.css" />
 		<link rel="stylesheet" href="./css/jquery.dataTables.css"/>
 		<link rel="stylesheet" href="./css/main.css"> 	
@@ -22,7 +21,7 @@
 			<div class="large-9 columns">
 				<ul class="right button-group">
 					<li><a href="./index.html" class="button">Home</a></li>
-					<li><a href="#" class="button">About Us</a></li>
+					<li><a href="./about_us.html" class="button">About Us</a></li>
 					<li><a href="#" class="button"><img src="./img/help.png" width="12px" height="12px"> Help</a></li>
 				</ul>
 			</div>
@@ -31,41 +30,38 @@
 
 		<div class="row">     
 			<div class="large-9 push-3 columns">
-				<h3>Reporting Ratios</h3>
+				<h3>Drug &amp; Reaction Reports</h3>
 				<div class="small-3 columns">				
 					<label for="drugOption">Select a drug:</label> <select id="drugOption"></select>
 					<label for="reactionOption">Select a reaction:</label> <select id="reactionOption"></select><br>
 					<button id="myButton">Search</button>
 				</div>
 				<div class="push-4" style="float:top-right;">
-					<img src="./img/shutterstock_173333135.jpg" width="40%" height="40%"/>
+					<img src="./img/shutterstock_98521175.jpg" width="40%" height="40%"/>
 				</div>
 				
 				<br><br>
 				
-				<table id="ratios" class="display" cellspacing="0" width="100%">
-				<thead>
+				<table id="report" class="display" cellspacing="0" width="100%">
+			        <thead>
 			            <tr>
-			                <th>Drug</th>
-			                <th>Reaction</th>
-			                <th>Proportional Reporting Ratio</th>
-			                <th>Relative Reporting Ratio</th>
-			                <th>Reporting Odds Ratio</th>			                
+			                <th>Name</th>
+			                <th>Position</th>
+			                <th>Office</th>
+			                
 			            </tr>
-			        </thead>			 
+			        </thead>
+			 
+			        <tfoot>
+			            <tr>
+			                <th>Name</th>
+			                <th>Position</th>
+			                <th>Office</th>
+			              
+			            </tr>
+			        </tfoot>
 			    </table>
-				<p>               
-				The proportional reporting ratio (PRR) is a statistic that is used to summarize the extent to which a particular adverse 
-				event is reported for individuals taking a specific drug, compared to the frequency at which the same adverse event is reported for patients 
-				taking some other drug (or who are taking any drug in a specified class of drugs). 
-				<br><br>A PRR greater than 1 suggests that the adverse event is more commonly reported for individuals taking the drug of interest, relative 
-				to the comparison drugs. This could indicate that the adverse event is caused by the drug of interest and therefore a "side effect",
-				although a PRR exceeding 1 could also reflect sampling variation in the data, reporting errors, biased reporting, multiple reports of the 
-				same case or the same patient, or a number of other causes.
-				</p>
-			
 			</div>
-			
 			<div class="large-3 pull-9 columns panel">				
 				<ul class="side-nav">
 					<li><a href="./index.html">Home</a></li>
@@ -130,7 +126,8 @@
   
 			var myDrugCollection = new drugCollection;
 			myDrugCollection.fetch(); // this makes a call to the server and populates the collection based on the response.	
-						
+					
+			
 			// We extend the Backbone.Model prototype to build our own
 			var reactionModel = Backbone.Model.extend({
 			  // We can pass it default values.
@@ -167,8 +164,6 @@
 					reportingOddsRatio : 0					
 				}
 			});	
-			var jsonre;			 
-			
 			var reportCollection = Backbone.Collection.extend({
 				model : reportModel,
 				url : function(){
@@ -178,8 +173,10 @@
 					return url;
 				},
 				parse : function(response){
-					//alert('parse'+JSON.stringify(response));					 
-					jsonre=response;
+					//alert('parse'+JSON.stringify(response));
+					$("#PRR").html(response.proportionalReportingRatio);
+					$("#RRR").html(response.relativeReportingRatio);
+					$("#ROR").html(response.reportingOddsRatio);
 					return response;
 				}
 			});
@@ -188,22 +185,22 @@
 				selectedDrug = $("#drugOption").val();
 				selectedReaction = $("#reactionOption").val();
 				var myReportCollection = new reportCollection;
-				var s = myReportCollection.fetch();
-				$('#ratios').dataTable({
-					"paginate" : false,
-					"info" : false,
-					"searching" : false,
-					"sorting" : false,
-			        "data":[ 
-			                 [selectedDrug, 
-			                  selectedReaction,
-			                  jsonre.relativeReportingRatio,
-			                  jsonre.proportionalReportingRatio,
-			                  jsonre.reportingOddsRatio
-			                 ]
-			               ]
-			    });
+				var s = myReportCollection.fetch({ 
+				    data: { proportionalReportingRatio: 2.7 },
+				    processData: true
+				});
+				var selectedDrug=$("#showDrug").html(selectedDrug);
+				var selectedReaction=$("#showReaction").html(selectedReaction);
 			}); 
+			
+			$(document).ready(function() {
+			    $('#report').dataTable( {
+			        "data":[ ["Airi",    	      "Satou",     	      "Accountant"    	    ],
+			        	    [	      "Angelica",  	      "Ramos",    	      "Chief Executive Officer (CEO)"  	]]
+			    } );
+			} );
+			
+ 
 		</script>
 	</body>
 </html>
