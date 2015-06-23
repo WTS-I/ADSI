@@ -1,8 +1,11 @@
 package com.wtsintegration.adsi.client;
 
+import java.util.List;
+
+import junit.framework.TestCase;
+
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
-import junit.framework.TestCase;
 
 /**
  * Created by zmelnick on 6/23/15.
@@ -138,6 +141,20 @@ public class DrugClientTest extends TestCase {
     }
 
     public void testGetCountExcludeDrugAndReaction1() throws Exception {
+
+    }
+    
+    public void testGetTopReactionsByDrug() throws Exception {
+        DrugClient client = DrugClient.INSTANCE;
+        List<Reaction> reactions;
+
+        reactions = client.getTopReactionsByDrug(IBUPROFEN, 10);
+        assertNotNull(reactions);
+        assertTrue(reactions.size() == 10);
+
+        reactions = client.getTopReactionsByDrug("XXXXX", 10);
+        assertNotNull(reactions);
+        assertTrue(reactions.size() == 0);
 
     }
 }
