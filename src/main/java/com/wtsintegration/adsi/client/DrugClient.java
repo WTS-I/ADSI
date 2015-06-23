@@ -135,6 +135,16 @@ public class DrugClient {
 		}
 	}
 	
+	public Integer getCountByDrugExcludeReaction(String drug, String reaction, Integer totalForDrugAndReaction) {
+		
+		Integer totalForDrug = getCountByDrug(drug);
+		if (totalForDrug != null && totalForDrugAndReaction != null) {
+			return totalForDrug - totalForDrugAndReaction;
+		} else {
+			return null;
+		}
+	}
+	
 	public Integer getCountByReactionExcludeDrug(Reaction reaction, Drug drug) {
 		return getCountByReactionExcludeDrug(reaction.getPreferredTerm(), drug.getName());
 	}
@@ -145,6 +155,34 @@ public class DrugClient {
 		Integer totalForDrugAndReaction = getCountByDrugAndReaction(drug, reaction);
 		if (totalForReaction != null && totalForDrugAndReaction != null) {
 			return totalForReaction - totalForDrugAndReaction;
+		} else {
+			return null;
+		}
+	}
+	
+	public Integer getCountByReactionExcludeDrug(String reaction, String drug, Integer totalForDrugAndReaction) {
+		
+		Integer totalForReaction = getCountByReaction(reaction);
+		if (totalForReaction != null && totalForDrugAndReaction != null) {
+			return totalForReaction - totalForDrugAndReaction;
+		} else {
+			return null;
+		}
+	}
+	
+	public Integer getCountExcludeDrugAndReaction(Drug drug, Reaction reaction) {
+		return getCountExcludeDrugAndReaction(drug.getName(), reaction.getPreferredTerm());
+	}
+	
+	public Integer getCountExcludeDrugAndReaction(String drug, String reaction) {
+		
+		Integer total = getCountAllRecords();
+		Integer totalForDrugAndReaction = getCountByDrugAndReaction(drug, reaction);
+		Integer totalForDrug = getCountByDrugExcludeReaction(drug, reaction, totalForDrugAndReaction);
+		Integer totalForReaction = getCountByReactionExcludeDrug(reaction, drug, totalForDrugAndReaction);
+		
+		if (total != null && totalForDrug != null && totalForReaction != null && totalForDrugAndReaction != null) {
+			return total - (totalForDrug + totalForReaction + totalForDrugAndReaction);
 		} else {
 			return null;
 		}

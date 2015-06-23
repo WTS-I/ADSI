@@ -10,24 +10,48 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Meta {
 
 	@XmlElement
-	String disclaimer;
+	private String disclaimer;
 	@XmlElement
-	String license;
+	private String license;
 	@XmlElement
-	String last_updated;
+	private String last_updated;
 	
 	@XmlElement
-	private Result results;
+	private MetaResults results;
 
 	public Meta() {
 		super();
 	}
 
-	public Result getResults() {
+	public String getDisclaimer() {
+		return disclaimer;
+	}
+
+	public void setDisclaimer(String disclaimer) {
+		this.disclaimer = disclaimer;
+	}
+
+	public String getLicense() {
+		return license;
+	}
+
+	public void setLicense(String license) {
+		this.license = license;
+	}
+
+	public String getLast_updated() {
+		return last_updated;
+	}
+
+	public void setLast_updated(String last_updated) {
+		this.last_updated = last_updated;
+	}
+
+	public MetaResults getResults() {
 		return results;
 	}
 
-	public void setResults(Result results) {
+	public void setResults(MetaResults results) {
 		this.results = results;
 	}
 }

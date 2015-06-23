@@ -1,6 +1,5 @@
 package com.wtsintegration.adsi.resources;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import javax.ws.rs.WebApplicationException;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.DrugReactionCorrelation;
 import com.wtsintegration.adsi.model.Reaction;
+import com.wtsintegration.adsi.service.DrugCorrelationService;
 
 @Path("/adsi/1.0")
 public class DrugReactionResource {
@@ -34,7 +34,8 @@ public class DrugReactionResource {
 		if(null == drug || null == reaction) {
 			throw new WebApplicationException("Both drug and reaction query parameters must be present");
 		}
-		return new DrugReactionCorrelation(new Drug(drug), new Reaction(reaction), new BigDecimal("1.1"), new BigDecimal("1.7"), new BigDecimal("1.42"));
+		DrugReactionCorrelation correlation = new DrugCorrelationService(new Drug(drug), new Reaction(reaction)).generateCorrelation();
+		return correlation;
 	}
 	
 	private static final List<Drug> DRUGS = new ArrayList<Drug>();
