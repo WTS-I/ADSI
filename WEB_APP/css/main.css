@@ -9,9 +9,16 @@ hr{
 	margin: 1.25rem 0 1.1875rem; 
 }
 html,body {
-  font-size: 80%; 
+  //font-size: 80%; 
 }
 
 .row{
 	background-color:#ffffff;
+}
+select{
+	width:300px;
+}
+label {
+	display:inline;
+	width: 150px;
 }
