@@ -13,7 +13,7 @@ public class DrugClientTest extends TestCase {
 	private static final Reaction RHINORRHOEA = new Reaction("RHINORRHOEA");
 	
 	public void testGetCountAllRecords() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;
 		
 		Integer count = client.getCountAllRecords();
 		assertNotNull(count);
@@ -21,7 +21,7 @@ public class DrugClientTest extends TestCase {
 	}
 	
 	public void testGetCountByDrug() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;
 		Integer count = null;
 		
 		count = client.getCountByDrug(IBUPROFEN);
@@ -34,7 +34,7 @@ public class DrugClientTest extends TestCase {
 	}
 	
 	public void testGetCountByReaction() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;
 		Integer count = null;
 		
 		count = client.getCountByReaction(RHINORRHOEA);
@@ -47,7 +47,7 @@ public class DrugClientTest extends TestCase {
 	}
 	
 	public void testGetCountByDrugAndReaction() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;;
 		Integer count = null;
 		
 		count = client.getCountByDrugAndReaction(IBUPROFEN, RHINORRHOEA);
@@ -60,7 +60,7 @@ public class DrugClientTest extends TestCase {
 	}
 	
 	public void testGetCountByDrugExcludeReaction() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;;
 		Integer count = null;
 		
 		count = client.getCountByDrugExcludeReaction(IBUPROFEN, RHINORRHOEA);
@@ -73,7 +73,7 @@ public class DrugClientTest extends TestCase {
 	}
 	
 	public void testGetCountByReactionExcludeDrug() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;;
 		Integer count = null;
 		
 		count = client.getCountByReactionExcludeDrug(RHINORRHOEA, IBUPROFEN);
@@ -86,7 +86,7 @@ public class DrugClientTest extends TestCase {
 	}
 	
 	public void testGetCountExcludeDrugAndReaction() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;;
 		Integer count = null;
 		
 		count = client.getCountExcludeDrugAndReaction(IBUPROFEN, RHINORRHOEA);
@@ -99,7 +99,7 @@ public class DrugClientTest extends TestCase {
 	}
 	
 	public void testGetTopDrugs() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;;
 		List<Drug> drugs = null;
 		
 		drugs = client.getTopDrugs(10);
@@ -112,7 +112,7 @@ public class DrugClientTest extends TestCase {
 	}
 	
 	public void testGetTopReactions() {
-		DrugClient client = new DrugClient();
+		DrugClient client = DrugClient.INSTANCE;;
 		List<Reaction> reaction = null;
 		
 		reaction = client.getTopReactions(10);
