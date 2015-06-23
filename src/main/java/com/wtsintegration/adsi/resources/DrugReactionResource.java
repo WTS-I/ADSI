@@ -1,6 +1,5 @@
 package com.wtsintegration.adsi.resources;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -23,14 +22,14 @@ public class DrugReactionResource {
 	@GET
 	@Path("/drugs")
 	public List<Drug> getAllDrugs() {
-		DrugClient client = DrugClient.INSTANCE;
+		DrugClient client = new DrugClient();
 		return client.getTopDrugs(DRUG_NUM);
 	}
 	
 	@GET
 	@Path("/reactions")
 	public List<Reaction> getAllReactions() {
-		DrugClient client = DrugClient.INSTANCE;
+		DrugClient client = new DrugClient();
 		return client.getTopReactions(REACTION_NUM);
 	}
 	

@@ -21,9 +21,7 @@ import com.wtsintegration.adsi.util.UserInterfaceAdapter;
 import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
 import com.wtsintegration.openfda.model.FdaPatientDrugResult;
 
-public enum DrugClient {
-	INSTANCE;
-	
+public class DrugClient {
 	private static final Logger log = Logger.getLogger(DrugClient.class);
 	
 	private WebTarget webTarget;
@@ -31,7 +29,7 @@ public enum DrugClient {
 	private final static String HOST = "https://api.fda.gov";
 	private final static String PATH = "drug/event.json";
 	
-	DrugClient() {
+	public DrugClient() {
 		webTarget = ClientBuilder.newClient().target(HOST);
 	}
 	
