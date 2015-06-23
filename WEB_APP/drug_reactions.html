@@ -103,7 +103,7 @@
 
 			var drugCollection = Backbone.Collection.extend({
 				model : drugModel,
-				url : "http://localhost:8080/adsi/1.0/drugs",
+				url : "http://localhost:8080/api/adsi/1.0/drugs",
 				parse : function(response){
 					var self = this;
 					_.each(response, function(drug){
@@ -127,7 +127,7 @@
 
 			var reactionCollection = Backbone.Collection.extend({
 				model : reactionModel,
-				url : "http://localhost:8080/adsi/1.0/reactions",
+				url : "http://localhost:8080/api/adsi/1.0/reactions",
 				parse : function(response){
 					var self = this;
 					_.each(response, function(reaction){
@@ -158,7 +158,7 @@
 				url : function(){
 					var d = $("#drugOption").val();
 					var r = $("#reactionOption").val();
-					var url = "http://localhost:8080/adsi/1.0/correlations?drug="+d+"&reaction="+r;
+					var url = "http://localhost:8080/api/adsi/1.0/correlations?drug="+d+"&reaction="+r;
 					return url;
 				},
 				parse : function(response){
