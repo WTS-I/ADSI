@@ -1,11 +1,15 @@
 package com.wtsintegration.adsi.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import com.wtsintegration.adsi.client.jaxb.Response;
+import com.wtsintegration.adsi.client.jaxb.Result;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
 
@@ -118,6 +122,58 @@ public class DrugClient {
 		}
 		
 		return null;
+	}
+	
+	public List<Drug> getTopDrugs(int n) {
+		Response response = null;
+		List<Drug> drugs = new ArrayList<Drug>();
+		
+		try {
+			response = webTarget
+					.path(PATH)
+					.queryParam("count", "patient.drug.medicinalproduct.exact")
+					.queryParam("limit", String.valueOf(n))
+					.request(MediaType.TEXT_PLAIN_TYPE)
+			        .get(Response.class);
+		} catch (NotFoundException nfe) {
+			return drugs;
+		} catch (Exception e) {
+			System.out.println("DrugClient.getTopDrugs: " + e.getMessage());
+		}
+		
+		if (response != null && response.getResults() != null) {
+			for (Result result : response.getResults()) {
+				drugs.add(new Drug(result.getTerm()));
+			}
+		}
+		
+		return drugs;
+	}
+	
+	public List<Reaction> getTopReactions(int n) {
+		Response response = null;
+		List<Reaction> reactions = new ArrayList<Reaction>();
+		
+		try {
+			response = webTarget
+					.path(PATH)
+					.queryParam("count", "patient.reaction.reactionmeddrapt.exact")
+					.queryParam("limit", String.valueOf(n))
+					.request(MediaType.TEXT_PLAIN_TYPE)
+			        .get(Response.class);
+		} catch (NotFoundException nfe) {
+			return reactions;
+		} catch (Exception e) {
+			System.out.println("DrugClient.getTopReactions: " + e.getMessage());
+		}
+		
+		if (response != null && response.getResults() != null) {
+			for (Result result : response.getResults()) {
+				reactions.add(new Reaction(result.getTerm()));
+			}
+		}
+		
+		return reactions;
 	}
 	
 	public Integer getCountByDrugExcludeReaction(Drug drug, Reaction reaction) {

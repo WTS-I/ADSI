@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 
+import com.wtsintegration.adsi.client.DrugClient;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.DrugReactionCorrelation;
 import com.wtsintegration.adsi.model.Reaction;
@@ -15,17 +16,22 @@ import com.wtsintegration.adsi.service.DrugCorrelationService;
 
 @Path("/adsi/1.0")
 public class DrugReactionResource {
+	
+	private static final int DRUG_NUM = 100;
+	private static final int REACTION_NUM = 100;
 
 	@GET
 	@Path("/drugs")
 	public List<Drug> getAllDrugs() {
-		return DRUGS;
+		DrugClient client = new DrugClient();
+		return client.getTopDrugs(DRUG_NUM);
 	}
 	
 	@GET
 	@Path("/reactions")
 	public List<Reaction> getAllReactions() {
-		return REACTIONS;
+		DrugClient client = new DrugClient();
+		return client.getTopReactions(REACTION_NUM);
 	}
 	
 	@GET

@@ -1,9 +1,11 @@
 package com.wtsintegration.adsi.client;
 
-import com.wtsintegration.adsi.model.Drug;
-import com.wtsintegration.adsi.model.Reaction;
+import java.util.List;
 
 import junit.framework.TestCase;
+
+import com.wtsintegration.adsi.model.Drug;
+import com.wtsintegration.adsi.model.Reaction;
 
 public class DrugClientTest extends TestCase {
 
@@ -94,5 +96,31 @@ public class DrugClientTest extends TestCase {
 		count = client.getCountExcludeDrugAndReaction("XXXXX", "XXXXX");
 		assertNotNull(count);
 		assertTrue(count.equals(client.getCountAllRecords()));
+	}
+	
+	public void testGetTopDrugs() {
+		DrugClient client = new DrugClient();
+		List<Drug> drugs = null;
+		
+		drugs = client.getTopDrugs(10);
+		assertNotNull(drugs);
+		assertTrue(drugs.size() == 10);
+		
+		drugs = client.getTopDrugs(-1);
+		assertNotNull(drugs);
+		assertTrue(drugs.size() == 0);
+	}
+	
+	public void testGetTopReactions() {
+		DrugClient client = new DrugClient();
+		List<Reaction> reaction = null;
+		
+		reaction = client.getTopReactions(10);
+		assertNotNull(reaction);
+		assertTrue(reaction.size() == 10);
+		
+		reaction = client.getTopReactions(-1);
+		assertNotNull(reaction);
+		assertTrue(reaction.size() == 0);
 	}
 }
