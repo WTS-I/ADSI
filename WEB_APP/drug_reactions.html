@@ -31,12 +31,10 @@
 		<div class="row">     
 			<div class="large-9 push-3 columns">
 				<h3>Drug &amp; Reaction Patient Reports</h3>
-				<p>&nbsp;</p>
-				<p>Drug: <span id="showDrug"></span></p>
-				<p>Reaction: <span id="showReaction"></span></p>
-				<p>Proportional Reporting Ratio: <span id="PRR"></span></p>
-				<p>Relative Reporting Ratio: <span id="RRR"></span></p>
-				<p>Reporting Odds Ratio: <span id="ROR"></span></p>
+				<label for="drugOption">Select a drug:</label> <select id="drugOption"></select><br>
+				<label for="reactionOption">Select a reaction:</label> <select id="reactionOption"></select><br>
+				<button id="myButton">Search</button>
+				<br><br>
 				
 				<table id="report" class="display" cellspacing="0" width="100%">
 			        <thead>
@@ -111,7 +109,7 @@
 
 			var drugCollection = Backbone.Collection.extend({
 				model : drugModel,
-				url : "http://localhost:8080/adsi/1.0/drugs",
+				url : "http://localhost:8080/api/adsi/1.0/drugs",
 				parse : function(response){
 					var self = this;
 					_.each(response, function(drug){
@@ -135,7 +133,7 @@
 
 			var reactionCollection = Backbone.Collection.extend({
 				model : reactionModel,
-				url : "http://localhost:8080/adsi/1.0/reactions",
+				url : "http://localhost:8080/api/adsi/1.0/reactions",
 				parse : function(response){
 					var self = this;
 					_.each(response, function(reaction){
