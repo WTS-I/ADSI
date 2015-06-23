@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
+import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
 
 public class DrugClientTest1 extends TestCase {
 
@@ -122,5 +123,18 @@ public class DrugClientTest1 extends TestCase {
 		reaction = client.getTopReactions(-1);
 		assertNotNull(reaction);
 		assertTrue(reaction.size() == 0);
+	}
+	
+	/**
+	 * calls the getPatientDrugAndReactionList method and ensures an object returns.
+	 */
+	public void testGetPatientDrugAndReactionList() {
+		
+		DrugClient fdaRestService = DrugClient.INSTANCE;
+		
+		FdaPatientDrugResponse fdaResponse = fdaRestService.getPatientDrugAndReactionList("LETAIRIS", "Rhinorrhoea");
+		
+		assertNotNull(fdaResponse);
+		
 	}
 }
