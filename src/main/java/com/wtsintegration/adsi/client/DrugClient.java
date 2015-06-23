@@ -4,17 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+
+import org.apache.log4j.Logger;
+import org.glassfish.jersey.jackson.JacksonFeature;
 
 import com.wtsintegration.adsi.client.jaxb.Response;
 import com.wtsintegration.adsi.client.jaxb.Result;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
+import com.wtsintegration.adsi.util.UserInterfaceAdapter;
+import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
+import com.wtsintegration.openfda.model.FdaPatientDrugResult;
 
 public enum DrugClient {
 	INSTANCE;
+	
+	private static final Logger log = Logger.getLogger(DrugClient.class);
 	
 	private WebTarget webTarget;
 
@@ -243,5 +253,60 @@ public enum DrugClient {
 		} else {
 			return null;
 		}
+	}
+	
+	public FdaPatientDrugResponse getPatientDrugAndReactionList(String drug, String reaction) {
+		
+		javax.ws.rs.core.Response response = null;
+		
+		Client client = ClientBuilder.newClient().register(JacksonFeature.class);
+		
+		drug = "\"" + drug + "\"";
+		reaction = "\"" + reaction + "\"";
+		
+		try {
+			String searchParam = "patient.drug.medicinalproduct:" + drug
+					+ " AND patient.reaction.reactionmeddrapt:" + reaction;
+			
+			StringBuffer stringBufferUrl = new StringBuffer();
+			stringBufferUrl.append(PATH);
+			stringBufferUrl.append("?search=");
+			stringBufferUrl.append(searchParam);
+			
+//			WebTarget webTarget = client.target(stringBufferUrl.toString());
+		
+			WebTarget webTarget = client.target(HOST).path(PATH)
+					.queryParam("search", searchParam).queryParam("limit", "100");
+			
+			//create the invocation object
+			Invocation getInvocation =
+					webTarget.request(MediaType.APPLICATION_JSON).buildGet();
+			
+			//call the FDA webservice
+			response = getInvocation.invoke();
+			
+			log.debug("Response code = " + response.getStatus());
+
+			//check the response code
+			if (response.getStatus() != 200) {// 200 is successful GET response code
+				log.error("getPatientDrugAndReactionList() Failed : HTTP error code : "
+						+ response.getStatus());
+				throw new Exception(
+						"getPatientDrugAndReactionList() Failed : HTTP error code : "
+								+ response.getStatus());
+			}
+			
+			//use Jackson to convert the JSON response to an FdaPatientDrugResponse pojo
+			FdaPatientDrugResponse fdaPatientDrugResponse = response.readEntity(FdaPatientDrugResponse.class);
+					
+			return fdaPatientDrugResponse;
+			
+		} catch (NotFoundException nfe) {
+			return null;
+		} catch (Exception e) {
+			System.out.println("DrugClient.getPatientDrugAndReactionList: " + e.getMessage());
+		}
+		
+		return null;
 	}
 }
