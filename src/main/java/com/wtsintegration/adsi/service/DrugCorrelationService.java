@@ -22,7 +22,7 @@ public class DrugCorrelationService {
 	private BigDecimal totalExcludeDrugAndReaction;
 	
 	public DrugCorrelationService(Drug drug, Reaction reaction) {
-		this.drugClient = DrugClient.INSTANCE;
+		this.drugClient = new DrugClient();
 		this.drug = drug;
 		this.reaction = reaction;
 		total = null;
