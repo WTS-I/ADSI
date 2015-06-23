@@ -5,7 +5,10 @@ import java.util.Map;
 
 import javax.servlet.Servlet;
 
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandlerCollection;
+import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
@@ -23,7 +26,7 @@ public class JettyEmbeddedServer {
 	 * 
 	 * Following defaults apply (Jersey JAX-RS REST support):
 	 * port=8080 
-	 * root=/ 
+	 * root=/api 
 	 * servlet=org.glassfish.jersey.servlet.ServletContainer
 	 * jersey.config.server.provider.packages=com.wtsintegration.adsi.resources
 	 */
@@ -69,6 +72,7 @@ public class JettyEmbeddedServer {
 		@SuppressWarnings("unchecked")
 		Class<? extends Servlet> servletClass = (Class<? extends Servlet>) Class.forName(config.get("servlet"));
 		ServletHolder servlet = context.addServlet(servletClass, "/*");
+		//ServletHolder servlet = context.addServlet(servletClass, "/rest");
 		servlet.setInitOrder(0);
 		for(String key : config.keySet()) {
 			if(!key.equals("servlet") && !key.equals("port") && !key.equals("root")) {
@@ -83,7 +87,18 @@ public class JettyEmbeddedServer {
 	private static Server getConfiguredJettyServer(ServletContextHandler context, Map<String,String> config) {
 		String portString = config.get("port");
 		Server server = new Server(Integer.parseInt(portString));
-		server.setHandler(context);
+		
+		ServletContextHandler staticContext = new ServletContextHandler(ServletContextHandler.SESSIONS);
+		staticContext.setContextPath("/");
+		staticContext.setResourceBase("WEB_APP");
+		staticContext.addServlet(DefaultServlet.class, "/*");
+		
+		ContextHandlerCollection contexts=new ContextHandlerCollection();
+		contexts.setHandlers(new Handler[]{context, staticContext});
+
+		server.setHandler(contexts);
+		 
+		//server.setHandler(context);
 		return server;
 	}
 	
@@ -93,7 +108,7 @@ public class JettyEmbeddedServer {
 	private static final Map<String,String> DEFAULT_CONFIG = new HashMap<String,String>();
 	static {
 		DEFAULT_CONFIG.put("port","8080");
-		DEFAULT_CONFIG.put("root","/");
+		DEFAULT_CONFIG.put("root","/api");
 		DEFAULT_CONFIG.put("servlet","org.glassfish.jersey.servlet.ServletContainer");
 		DEFAULT_CONFIG.put("jersey.config.server.provider.packages","com.wtsintegration.adsi.resources");
 	}
