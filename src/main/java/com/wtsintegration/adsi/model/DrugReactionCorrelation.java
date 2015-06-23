@@ -13,6 +13,11 @@ public class DrugReactionCorrelation {
 	
 	public DrugReactionCorrelation() { }
 	
+	public DrugReactionCorrelation(Drug drug, Reaction reaction) {
+		this.drug = drug;
+		this.reaction = reaction;
+	}
+	
 	public DrugReactionCorrelation(Drug drug, Reaction reaction, BigDecimal reportingOddsRatio, BigDecimal proportionalReportingRatio, BigDecimal relativeReportingRatio) {
 		this.drug = drug;
 		this.reaction = reaction;
