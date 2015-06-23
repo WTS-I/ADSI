@@ -152,6 +152,12 @@ public class DrugClientTest extends TestCase {
         assertNotNull(reactions);
         assertTrue(reactions.size() == 10);
 
+    }
+    
+    public void testGetTopReactionsByDrug1() throws Exception {
+        DrugClient client = DrugClient.INSTANCE;
+        List<Reaction> reactions;
+
         reactions = client.getTopReactionsByDrug("XXXXX", 10);
         assertNotNull(reactions);
         assertTrue(reactions.size() == 0);
