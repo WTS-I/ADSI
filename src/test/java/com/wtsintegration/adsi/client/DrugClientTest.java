@@ -1,5 +1,9 @@
 package com.wtsintegration.adsi.client;
 
+import java.util.List;
+
+import junit.framework.TestCase;
+
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
 import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
@@ -253,11 +257,6 @@ public class DrugClientTest extends TestCase {
     }
 
     public void testGetCountExcludeDrugAndReaction1() throws Exception {
-        DrugClient spy = spy(client);
-        final Integer total = 1000;
-        final Integer totalForDrug = 100;
-        final Integer totalForReaction = 90;
-        final Integer totalForDrugAndReaction = 10;
 
         when(spy.getCountAllRecords()).thenReturn(total);
         when(spy.getCountByDrugAndReaction(IBUPROFEN.getName(), RHINORRHOEA.getPreferredTerm()))

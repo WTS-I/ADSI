@@ -36,13 +36,13 @@ public class ResponseTest extends TestCase {
     }
 
     public void testGetResults() throws Exception {
-        List<Result> resultList = new ArrayList<>();
+        List<Result> resultList = new ArrayList<Result>();
         response.setResults(resultList);
         assertTrue(resultList == response.getResults());
     }
 
     public void testSetResults() throws Exception {
-        List<Result> resultList = new ArrayList<>();
+        List<Result> resultList = new ArrayList<Result>();
         response.setResults(resultList);
         assertTrue(resultList == response.getResults());
     }
