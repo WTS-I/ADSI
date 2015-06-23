@@ -58,7 +58,6 @@ public class DrugCorrelationService {
 			}
 		}
 		
-		System.out.println(ror);
 		return ror;
 	}
 	
@@ -80,8 +79,6 @@ public class DrugCorrelationService {
 			}
 		}
 		
-		System.out.println(prr);
-		
 		return prr;
 	}
 	
@@ -101,7 +98,7 @@ public class DrugCorrelationService {
 				rrr = nom.divide(denom, 2, RoundingMode.HALF_UP);
 			}
 		}
-		System.out.println(rrr);
+
 		return rrr;
 	}
 
