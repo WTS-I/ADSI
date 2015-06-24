@@ -105,40 +105,10 @@
 		<script src="./js/backbone-min.js" type="text/javascript"></script>
 		<script src="./js/jquery.dataTables.min.js" type="text/javascript"></script>
 		<script src="./js/drugs_selects.js" type="text/javascript"></script>
-		<script src="" type="text/javascript"></script>
+		<script type="text/javascript"></script>
 
 		<script>
-			$(document).foundation(); 
-
-			//{"drug":{"name":"[XXX]"},"proportionalReportingRatio":1.7,"reaction":{"preferredTerm":"[YYY]"},"relativeReportingRatio":1.42,"reportingOddsRatio":1.1}
-			
-			// We extend the Backbone.Model prototype to build our own
-			var reportModel = Backbone.Model.extend({
-			  // We can pass it default values.
-				defaults : {
-					drug : '',
-					proportionalReportingRatio : 0,
-					preferredTerm: '',
-					relativeReportingRatio : 0,
-					reportingOddsRatio : 0					
-				}
-			});	
-			var jsonre;			 
-			
-			var reportCollection = Backbone.Collection.extend({
-				model : reportModel,
-				url : function(){
-					var d = $("#drugOption").val();
-					var r = $("#reactionOption").val();
-					var url = "http://localhost:8080/api/adsi/1.0/correlations?drug="+d+"&reaction="+r;
-					return url;
-				},
-				parse : function(response){
-					//alert('parse'+JSON.stringify(response));					 
-					jsonre=response;
-					return response;
-				}
-			});
+			$(document).foundation(); 			 
 			
 			$('#myButton').click(function () {	
 				var selectedDrug = $("#drugOption").val();
