@@ -56,8 +56,15 @@ public class PresentationDataModel {
 		
 		StringBuffer stringBuffer = new StringBuffer();
 		
+		int recordTotal = 0;
+		
+		if(presentationDataRows != null) {
+			recordTotal = presentationDataRows.size();
+		}
+		
 		//first brace
-		stringBuffer.append("{\"draw\":1,\"recordedTotal\":1,\"recordsFiltered\":1,\"data\":\n");
+//		stringBuffer.append("{\"draw\":1,\"recordedTotal\":1,\"recordsFiltered\":1,\"data\":\n");
+		stringBuffer.append("{\"draw\":1,\"recordedTotal\":" + recordTotal + ",\"recordsFiltered\":" + recordTotal + ",\"data\":\n");
 		
 		stringBuffer.append("[\n");//start bracket
 		
