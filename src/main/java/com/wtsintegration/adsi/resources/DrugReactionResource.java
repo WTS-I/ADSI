@@ -83,24 +83,4 @@ public class DrugReactionResource {
 		return UserInterfaceAdapter.creatUiPresentationDataModel(fdaResponse).toString();
 	}
 
-	/**
-	 * returns a String representation of the drug and reaction model
-	 * @param drug
-	 * @param reaction
-	 * @return - String drug and reaction model the UI expects
-	 */
-	@GET
-	@Path("/correlationsReport")
-	public String getCorrelationReport(@QueryParam("drug") String drug, @QueryParam("reaction") String reaction) {
-		if(null == drug || null == reaction) {
-			throw new WebApplicationException("Both drug and reaction query parameters must be present");
-		}
-
-		DrugClient fdaRestService = new DrugClient();
-
-		FdaPatientDrugResponse fdaResponse = fdaRestService.getPatientDrugAndReactionList(drug, reaction);
-
-		return UserInterfaceAdapter.creatUiPresentationDataModel(fdaResponse).toString();
-	}
-
 }
