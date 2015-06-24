@@ -2,6 +2,7 @@ package com.wtsintegration.adsi.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.wtsintegration.openfda.model.FdaPatient;
 import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
@@ -51,5 +52,64 @@ public class UserInterfaceAdapter {
 		presentationDataModel.setPresentationDataRows(presentationDataRows);
 		
 		return presentationDataModel;
+	}
+	
+	/**
+	 * Creates a UI for the presentation layer string from incoming Reaction array
+	 * @param reactions ArrayList of reactions
+	 * @return String 
+	 */
+	public static String convertReactionListToUiString(List<Reaction> reactions) {
+		
+		//example		
+		/*
+		
+		{"draw":1,"recordedTotal":1,"recordsFiltered":1,"data":
+			[
+				[
+				  "dizziness"
+				],
+				[
+				  "cold sweats"
+				],
+				[
+				  "vertigo"
+				]
+			]
+		}
+		 
+		 */
+		
+		StringBuffer stringBuffer = new StringBuffer();
+		
+		int recordTotal = 0;
+		
+		if(reactions != null) {
+			recordTotal = reactions.size();
+		}
+		
+		//first brace
+		stringBuffer.append("{\"draw\":1,\"recordedTotal\":" + recordTotal + ",\"recordsFiltered\":" + recordTotal + ",\"data\":\n");
+		
+		stringBuffer.append("[\t\n");//start bracket
+		
+		//iterate through the values
+		for(Reaction reaction : reactions) {
+			stringBuffer.append("\t[");
+			stringBuffer.append("\"");
+			stringBuffer.append(reaction.getPreferredTerm());
+			stringBuffer.append("\"");
+			stringBuffer.append("],\n");	
+		}
+		
+		//remove the last ',' comma from the string
+		stringBuffer.delete(stringBuffer.length() - 2, stringBuffer.length());
+			
+		stringBuffer.append("\t\n]");//end bracket
+		
+		//end brace
+		stringBuffer.append("\n}");
+		
+		return stringBuffer.toString();
 	}
 }
