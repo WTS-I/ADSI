@@ -129,4 +129,42 @@ public class DrugReactionCorrelation {
 	public void setTotalForReaction(BigDecimal totalForReaction) {
 		this.totalForReaction = totalForReaction;
 	}
+	
+	public String toString() {
+		StringBuffer stringBuffer = new StringBuffer();
+		
+		//first brace
+		stringBuffer.append("{\"draw\":1,\"recordedTotal\":1,\"recordsFiltered\":1,\"data\":\n");
+		
+		// drug, reaction rrr, prr, ror
+		stringBuffer.append("[");
+		
+		stringBuffer.append("\n\t\"");
+		stringBuffer.append(getDrug().getName());
+		stringBuffer.append("\",");	
+		
+		stringBuffer.append("\n\t\"");
+		stringBuffer.append(getReaction().getPreferredTerm());
+		stringBuffer.append("\",");	
+		
+		stringBuffer.append("\n\t\"");
+		stringBuffer.append(getRelativeReportingRatio());
+		stringBuffer.append("\",");	
+		
+		stringBuffer.append("\n\t\"");
+		stringBuffer.append(getProportionalReportingRatio());
+		stringBuffer.append("\",");
+		
+		stringBuffer.append("\n\t\"");
+		stringBuffer.append(getReportingOddsRatio());
+		stringBuffer.append("\"");
+		
+		stringBuffer.append("\n]");
+		
+		//end brace
+		stringBuffer.append("\n}");
+		
+		
+		return stringBuffer.toString();
+	}
 }
