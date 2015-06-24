@@ -18,8 +18,9 @@ import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
 @Path("/adsi/1.0")
 public class DrugReactionResource {
 	
-	private static final int DRUG_NUM = 100;
-	private static final int REACTION_NUM = 100;
+	protected static final int DRUG_NUM = 100;
+	protected static final int REACTION_NUM = 100;
+	protected static final int TEN = 10;
 
 	private static final DrugClient INSTANCE = new DrugClient();
 
@@ -59,7 +60,7 @@ public class DrugReactionResource {
 		if(null == drug) {
 			throw new WebApplicationException("drug query parameter must be present");
 		}
-		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), 10);
+		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), TEN);
 		return UserInterfaceAdapter.convertReactionListToUiString(reactions);
 	}
 
