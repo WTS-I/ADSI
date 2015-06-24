@@ -32,6 +32,8 @@ public class PresentationDataModel {
 		
 		//example		
 		/*
+		 * 
+	{"draw":1,"recordedTotal":1,"recordsFiltered":1,"data":
 		[
 			[
 			  "Male",
@@ -49,10 +51,21 @@ public class PresentationDataModel {
 			  "High blood pressure, dizziness"
 			]
 		]
-		 
+	}
 		 */
 		
 		StringBuffer stringBuffer = new StringBuffer();
+		
+		int recordTotal = 0;
+		
+		if(presentationDataRows != null) {
+			recordTotal = presentationDataRows.size();
+		}
+		
+		//first brace
+//		stringBuffer.append("{\"draw\":1,\"recordedTotal\":1,\"recordsFiltered\":1,\"data\":\n");
+		stringBuffer.append("{\"draw\":1,\"recordedTotal\":" + recordTotal + ",\"recordsFiltered\":" + recordTotal + ",\"data\":\n");
+		
 		stringBuffer.append("[\n");//start bracket
 		
 		//iterate through the values
@@ -66,6 +79,9 @@ public class PresentationDataModel {
 		stringBuffer.delete(stringBuffer.length() - 2, stringBuffer.length());
 			
 		stringBuffer.append("\n]");//end bracket
+		
+		//end brace
+		stringBuffer.append("\n}");
 		
 		return stringBuffer.toString();
 	}

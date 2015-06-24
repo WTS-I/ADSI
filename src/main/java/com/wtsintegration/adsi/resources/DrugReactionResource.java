@@ -20,7 +20,7 @@ public class DrugReactionResource {
 	
 	private static final int DRUG_NUM = 100;
 	private static final int REACTION_NUM = 100;
-	
+
 	private static final DrugClient INSTANCE = new DrugClient();
 
 	@GET
@@ -62,7 +62,27 @@ public class DrugReactionResource {
 		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), 10);
 		return reactions;
 	}
-	
+
+	/**
+	 * gets a drug and reaction report of up to 100 records
+	 * @param drug - name of drug
+	 * @param reaction - name of reaction
+	 * @return String that the UI is expecting
+	 */
+	@GET
+	@Path("/correlationsReport")
+	public String getCorrelationReport(@QueryParam("drug") String drug, @QueryParam("reaction") String reaction) {
+		if(null == drug || null == reaction) {
+			throw new WebApplicationException("Both drug and reaction query parameters must be present");
+		}
+
+		DrugClient fdaRestService = new DrugClient();
+
+		FdaPatientDrugResponse fdaResponse = fdaRestService.getPatientDrugAndReactionList(drug, reaction);
+
+		return UserInterfaceAdapter.creatUiPresentationDataModel(fdaResponse).toString();
+	}
+
 	/**
 	 * returns a String representation of the drug and reaction model
 	 * @param drug
@@ -75,12 +95,12 @@ public class DrugReactionResource {
 		if(null == drug || null == reaction) {
 			throw new WebApplicationException("Both drug and reaction query parameters must be present");
 		}
-		
+
 		DrugClient fdaRestService = new DrugClient();
-		
+
 		FdaPatientDrugResponse fdaResponse = fdaRestService.getPatientDrugAndReactionList(drug, reaction);
-		
+
 		return UserInterfaceAdapter.creatUiPresentationDataModel(fdaResponse).toString();
 	}
-		
+
 }

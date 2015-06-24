@@ -282,7 +282,27 @@ public class DrugClient {
 		}
 	}
 	
+	/**
+	 * calls the FDA webservice to get a report of the drug and reaction list.
+	 * a limit of 100 records will be returned
+	 * @param drug - name of the drug
+	 * @param reaction - name of the reaction
+	 * @return FdaPatientDrugResponse
+	 */
 	public FdaPatientDrugResponse getPatientDrugAndReactionList(String drug, String reaction) {
+		return getPatientDrugAndReactionList(drug, reaction, 100);
+	}
+	
+
+	/**
+	 * calls the FDA webservice to get a report of the drug and reaction list.
+	 * a limit of 100 records will be returned
+	 * @param drug - name of the drug
+	 * @param reaction - name of the reaction
+	 * @param recordCountLimit - the max amount of records you want returned, there is a limit of 100
+	 * @return FdaPatientDrugResponse
+	 */
+	public FdaPatientDrugResponse getPatientDrugAndReactionList(String drug, String reaction, int recordCountLimit) {
 		
 		javax.ws.rs.core.Response response = null;
 		
@@ -303,7 +323,7 @@ public class DrugClient {
 //			WebTarget webTarget = client.target(stringBufferUrl.toString());
 		
 			WebTarget webTarget = client.target(HOST).path(PATH)
-					.queryParam("search", searchParam).queryParam("limit", "100");
+					.queryParam("search", searchParam).queryParam("limit", recordCountLimit);
 			
 			//create the invocation object
 			Invocation getInvocation =
