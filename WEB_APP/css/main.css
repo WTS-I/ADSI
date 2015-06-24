@@ -21,3 +21,11 @@ html,body {
 .content{
 	margin-top: -50px;
 }
+.dataTables_filter > label > input{
+	width: 80%;
+	display:inline;
+	margin-left:5px;
+}
+.dataTables_length > label > select{
+	width:45px;	
+}
