@@ -32,17 +32,13 @@
 		<div class="row">     
 			<div class="large-9 push-3 columns">
 				<h3>Reporting Ratios</h3>
-				<div class="small-3 columns">				
+				<img src="./img/shutterstock_173333135.jpg" width="40%" height="40%" style="float:right;"/>
+				<div class="large-6 columns">				
 					<label for="drugOption">Select a drug:</label> <select id="drugOption"></select>
 					<label for="reactionOption">Select a reaction:</label> <select id="reactionOption"></select><br>
 					<button id="myButton">Search</button>
-				</div>
-				<div class="push-4" style="float:top-right;">
-					<img src="./img/shutterstock_173333135.jpg" width="40%" height="40%"/>
-				</div>
-				
-				<br><br>
-				
+				</div>				
+								
 				<table id="ratios" class="display" cellspacing="0" width="100%" style="display:none;">
 					<thead>
 			            <tr>
@@ -54,29 +50,29 @@
 			            </tr>
 			        </thead>			 
 			    </table>
-			    <p></p>
-			    <p>
-			    ROR=AD/BC<br>
-				PRR=(A*(C+D))/(C*(A+B))<br>
-				RRR=(A*T)/((A+B)*(A+C))<br>
-				A=number of patient reports with both drug and reaction<br>
-				B=number of patient reports with drug, without reaction<br>
-				C=number of patient reports without drug, with reaction<br>
-				D=number of patient reports without drug, without reaction<br>
-			    </p>
-				<p>               
-				The proportional reporting ratio (PRR) is a statistic that is used to summarize the extent to which a particular adverse 
-				event is reported for individuals taking a specific drug, compared to the frequency at which the same adverse event is reported for patients 
-				taking some other drug (or who are taking any drug in a specified class of drugs). <sup><small>1</small></sup>
-				<br><br>A PRR greater than 1 suggests that the adverse event is more commonly reported for individuals taking the drug of interest, relative 
-				to the comparison drugs. This could indicate that the adverse event is caused by the drug of interest and therefore a "side effect",
-				although a PRR exceeding 1 could also reflect sampling variation in the data, reporting errors, biased reporting, multiple reports of the 
-				same case or the same patient, or a number of other causes.<sup><small>1</small></sup>
-				</p>
-				<p>
-				<small>1 - "Proportional reporting ratio." Wikipedia, The Free Encyclopedia. Wikimedia Foundation, Inc. 22 July 2004. Web. 23 June. 2015</small>
-				</p>
-			
+			    
+			   <br><br>
+			   <div class="large-10 columns">
+				    ROR=AD/BC<br>
+					PRR=(A*(C+D))/(C*(A+B))<br>
+					RRR=(A*T)/((A+B)*(A+C))<br>
+					A=Number of patient reports with both drug and reaction<br>
+					B=Number of patient reports with drug, without reaction<br>
+					C=Number of patient reports without drug, with reaction<br>
+					D=Number of patient reports without drug, without reaction<br>				    
+					<br>            
+					The proportional reporting ratio (PRR) is a statistic that is used to summarize the extent to which a particular adverse 
+					event is reported for individuals taking a specific drug, compared to the frequency at which the same adverse event is reported for patients 
+					taking some other drug (or who are taking any drug in a specified class of drugs). <sup><small>1</small></sup>
+					<br><br>
+					A PRR greater than 1 suggests that the adverse event is more commonly reported for individuals taking the drug of interest, relative 
+					to the comparison drugs. This could indicate that the adverse event is caused by the drug of interest and therefore a "side effect",
+					although a PRR exceeding 1 could also reflect sampling variation in the data, reporting errors, biased reporting, multiple reports of the 
+					same case or the same patient, or a number of other causes.<sup><small>1</small></sup>
+					<p>
+						<small>1 - "Proportional reporting ratio." Wikipedia, The Free Encyclopedia. Wikimedia Foundation, Inc. 22 July 2004. Web. 23 June. 2015</small>
+					</p>
+				</div>			
 			</div>
 			
 			<div class="large-3 pull-9 columns panel">				

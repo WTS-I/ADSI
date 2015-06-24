@@ -9,7 +9,7 @@ hr{
 	margin: 1.25rem 0 1.1875rem; 
 }
 html,body {
-  //font-size: 80%; 
+  font-size: 90%; 
 }
 
 .row{
@@ -18,7 +18,7 @@ html,body {
 select{
 	width:300px;
 }
-label {
+labelS {
 	display:inline;
 	width: 150px;
 }
