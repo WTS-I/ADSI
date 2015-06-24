@@ -12,14 +12,14 @@ import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.DrugReactionCorrelation;
 import com.wtsintegration.adsi.model.Reaction;
 import com.wtsintegration.adsi.service.DrugCorrelationService;
+import com.wtsintegration.adsi.util.UserInterfaceAdapter;
+import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
 
 @Path("/adsi/1.0")
 public class DrugReactionResource {
 	
 	private static final int DRUG_NUM = 100;
 	private static final int REACTION_NUM = 100;
-	
-	private static final DrugClient INSTANCE = new DrugClient();
 
 	@GET
 	@Path("/drugs")
@@ -35,14 +35,20 @@ public class DrugReactionResource {
 		return client.getTopReactions(REACTION_NUM);
 	}
 	
+	/**
+	 * Returns a JSON string format of the drug reaction correlation:: drug name, reaction rrr, prr, and ror
+	 * @param drug
+	 * @param reaction
+	 * @return String drug name, reaction, RRR, PRR, ROR
+	 */
 	@GET
 	@Path("/correlations")
-	public DrugReactionCorrelation getCorrelation(@QueryParam("drug") String drug, @QueryParam("reaction") String reaction) {
+	public String getCorrelation(@QueryParam("drug") String drug, @QueryParam("reaction") String reaction) {
 		if(null == drug || null == reaction) {
 			throw new WebApplicationException("Both drug and reaction query parameters must be present");
 		}
 		DrugReactionCorrelation correlation = new DrugCorrelationService(new Drug(drug), new Reaction(reaction)).generateCorrelation();
-		return correlation;
+		return correlation.toString();
 	}
 	
 	@GET
@@ -51,7 +57,25 @@ public class DrugReactionResource {
 		if(null == drug) {
 			throw new WebApplicationException("drug query parameter must be present");
 		}
-		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), 10);
+		
+		DrugClient drugClient = new DrugClient();
+		
+		List<Reaction> reactions = drugClient.getTopReactionsByDrug(new Drug(drug), 10);
 		return reactions;
+	}
+	
+	@GET
+	@Path("/correlationsReport")
+	//TODO: convert this to a string for Diana
+	public String getCorrelationReport(@QueryParam("drug") String drug, @QueryParam("reaction") String reaction) {
+		if(null == drug || null == reaction) {
+			throw new WebApplicationException("Both drug and reaction query parameters must be present");
+		}
+		
+		DrugClient fdaRestService = new DrugClient();
+		
+		FdaPatientDrugResponse fdaResponse = fdaRestService.getPatientDrugAndReactionList(drug, reaction);
+		
+		return UserInterfaceAdapter.creatUiPresentationDataModel(fdaResponse).toString();
 	}
 }
