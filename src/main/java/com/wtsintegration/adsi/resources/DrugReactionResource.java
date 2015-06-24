@@ -55,12 +55,12 @@ public class DrugReactionResource {
 	
 	@GET
 	@Path("/reactionsForDrug")
-	public List<Reaction> getReactionsForDrug(@QueryParam("drug") String drug) {
+	public String getReactionsForDrug(@QueryParam("drug") String drug) {
 		if(null == drug) {
 			throw new WebApplicationException("drug query parameter must be present");
 		}
 		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), 10);
-		return reactions;
+		return UserInterfaceAdapter.convertReactionListToUiString(reactions);
 	}
 
 	/**

@@ -9,16 +9,15 @@ hr{
 	margin: 1.25rem 0 1.1875rem; 
 }
 html,body {
-  //font-size: 80%; 
+  font-size: 90%; 
 }
 
 .row{
 	background-color:#ffffff;
 }
-select{
+#drugOption #reactionOption{
 	width:300px;
 }
-label {
-	display:inline;
-	width: 150px;
+.content{
+	margin-top: -50px;
 }
