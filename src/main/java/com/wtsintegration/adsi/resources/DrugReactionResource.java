@@ -12,6 +12,8 @@ import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.DrugReactionCorrelation;
 import com.wtsintegration.adsi.model.Reaction;
 import com.wtsintegration.adsi.service.DrugCorrelationService;
+import com.wtsintegration.adsi.util.UserInterfaceAdapter;
+import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
 
 @Path("/adsi/1.0")
 public class DrugReactionResource {
@@ -37,12 +39,12 @@ public class DrugReactionResource {
 	
 	@GET
 	@Path("/correlations")
-	public DrugReactionCorrelation getCorrelation(@QueryParam("drug") String drug, @QueryParam("reaction") String reaction) {
+	public String getCorrelation(@QueryParam("drug") String drug, @QueryParam("reaction") String reaction) {
 		if(null == drug || null == reaction) {
 			throw new WebApplicationException("Both drug and reaction query parameters must be present");
 		}
 		DrugReactionCorrelation correlation = new DrugCorrelationService(new Drug(drug), new Reaction(reaction)).generateCorrelation();
-		return correlation;
+		return correlation.toString();
 	}
 	
 	@GET
@@ -53,5 +55,25 @@ public class DrugReactionResource {
 		}
 		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), 10);
 		return reactions;
+	}
+	
+	/**
+	 * gets a drug and reaction report of up to 100 records
+	 * @param drug - name of drug
+	 * @param reaction - name of reaction
+	 * @return String that the UI is expecting
+	 */
+	@GET
+	@Path("/correlationsReport")
+	public String getCorrelationReport(@QueryParam("drug") String drug, @QueryParam("reaction") String reaction) {
+		if(null == drug || null == reaction) {
+			throw new WebApplicationException("Both drug and reaction query parameters must be present");
+		}
+		
+		DrugClient fdaRestService = new DrugClient();
+		
+		FdaPatientDrugResponse fdaResponse = fdaRestService.getPatientDrugAndReactionList(drug, reaction);
+		
+		return UserInterfaceAdapter.creatUiPresentationDataModel(fdaResponse).toString();
 	}
 }
