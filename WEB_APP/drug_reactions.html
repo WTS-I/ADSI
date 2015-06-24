@@ -135,13 +135,15 @@
 				var selectedReaction = $("#reactionOption").val();
 				var url2 = "http://localhost:8080/api/adsi/1.0/correlationsReport?drug="+selectedDrug+"&reaction="+selectedReaction;
 				$('#report').dataTable( {
-				        paging: false,
-				        searching: false,
-				        ordering: false,
+				        paging: true,
+				        searching: true,
+				        ordering: true,
 				        destroy: true,
-				        paginate: false,
+				        paginate: true,
 				        processing: false,
-				        info: false,
+				        info: true,
+				        pageLength:5,
+				        lengthMenu: [ 3, 5, 10],
 				    	ajax: {url : url2}
 				});				
 				$("#report").show();
