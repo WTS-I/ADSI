@@ -15,10 +15,9 @@ html,body {
 .row{
 	background-color:#ffffff;
 }
-select{
+#drugOption #reactionOption{
 	width:300px;
 }
-labelS {
-	display:inline;
-	width: 150px;
+.content{
+	margin-top: -50px;
 }
