@@ -134,7 +134,7 @@ public class DrugReactionCorrelation {
 		StringBuffer stringBuffer = new StringBuffer();
 		
 		//first brace
-		stringBuffer.append("{\"draw\":1,\"recordedTotal\":1,\"recordsFiltered\":1,\"data\":\n");
+		stringBuffer.append("{\"draw\":1,\"recordedTotal\":1,\"recordsFiltered\":1,\"data\":\n[");
 		
 		// drug, reaction rrr, prr, ror
 		stringBuffer.append("[");
@@ -162,7 +162,7 @@ public class DrugReactionCorrelation {
 		stringBuffer.append("\n]");
 		
 		//end brace
-		stringBuffer.append("\n}");
+		stringBuffer.append("\n]}");
 		
 		
 		return stringBuffer.toString();
