@@ -4,6 +4,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import com.wtsintegration.adsi.model.AdsiModelInterface;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
 import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
@@ -282,6 +283,11 @@ public class DrugClientTest extends TestCase {
         FdaPatientDrugResponse fdaResponse = client.getPatientDrugAndReactionList("LETAIRIS", "Rhinorrhoea");
         assertNotNull(fdaResponse);
 
+    }
+    
+    public void testGetTopDrugByReaction() {
+        List<AdsiModelInterface> list = client.getTopDrugByReaction("Rhinorrhoea", 10);
+        assertNotNull(list);
     }
 
 }
