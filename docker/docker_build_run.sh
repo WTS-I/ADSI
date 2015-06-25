@@ -1,6 +1,7 @@
 #!/bin/bash
 pwd
 
+cd docker
 cd apache-wtsadsi
 mkdir htdocs
 cp -r ../../WEB_APP/* htdocs/
