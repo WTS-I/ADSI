@@ -18,9 +18,10 @@ import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
 @Path("/adsi/1.0")
 public class DrugReactionResource {
 	
-	private static final int DRUG_NUM = 100;
-	private static final int REACTION_NUM = 100;
-	
+	protected static final int DRUG_NUM = 100;
+	protected static final int REACTION_NUM = 100;
+	protected static final int TEN = 10;
+
 	private static final DrugClient INSTANCE = new DrugClient();
 
 	@GET
@@ -37,6 +38,12 @@ public class DrugReactionResource {
 		return client.getTopReactions(REACTION_NUM);
 	}
 	
+	/**
+	 * Returns a JSON string format of the drug reaction correlation:: drug name, reaction rrr, prr, and ror
+	 * @param drug
+	 * @param reaction
+	 * @return String drug name, reaction, RRR, PRR, ROR
+	 */
 	@GET
 	@Path("/correlations")
 	public String getCorrelation(@QueryParam("drug") String drug, @QueryParam("reaction") String reaction) {
@@ -53,10 +60,10 @@ public class DrugReactionResource {
 		if(null == drug) {
 			throw new WebApplicationException("drug query parameter must be present");
 		}
-		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), 10);
+		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), TEN);
 		return UserInterfaceAdapter.convertReactionListToUiString(reactions);
 	}
-	
+
 	/**
 	 * gets a drug and reaction report of up to 100 records
 	 * @param drug - name of drug
@@ -69,11 +76,12 @@ public class DrugReactionResource {
 		if(null == drug || null == reaction) {
 			throw new WebApplicationException("Both drug and reaction query parameters must be present");
 		}
-		
+
 		DrugClient fdaRestService = new DrugClient();
-		
+
 		FdaPatientDrugResponse fdaResponse = fdaRestService.getPatientDrugAndReactionList(drug, reaction);
-		
+
 		return UserInterfaceAdapter.creatUiPresentationDataModel(fdaResponse).toString();
 	}
+
 }

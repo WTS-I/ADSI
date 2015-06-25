@@ -7,27 +7,25 @@ import junit.framework.TestCase;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
 import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
-import junit.framework.TestCase;
 
 import static org.mockito.Mockito.*;
 
-import java.util.List;
 
 /**
  * Created by zmelnick on 6/23/15.
  */
 public class DrugClientTest extends TestCase {
-    DrugClient client;
+    DrugClient client = new DrugClient();
     private static final Drug IBUPROFEN = new Drug("IBUPROFEN");
     private static final Reaction RHINORRHOEA = new Reaction("RHINORRHOEA");
 
     public void setUp() throws Exception {
         super.setUp();
-        client = new DrugClient();
+      //  client = new DrugClient();
     }
 
     public void tearDown() throws Exception {
-        client = null;
+        //client = null;
     }
 
     public void testGetCountAllRecords() throws Exception {
