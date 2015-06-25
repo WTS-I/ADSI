@@ -33,15 +33,20 @@
 				<h3>Top Ten Drugs</h3>
 				<img src="./img/shutterstock_70250746.jpg" width="40%" height="40%" style="float:right;"/>
 				<div class="large-6 columns">				
-					<label for="drugOption">Select a drug:</label> <select id="drugOption"></select>
+					<label for="reactionOption">Select a reaction:</label> <select id="reactionOption"></select>
 					<button id="myButton">Search</button>
 				</div>				
 				<br><br><br>
-				<div class="large-11">	
+				<div class="large-6">
+				Search patient records for the top ten drugs reported taken for the selected reaction.
+				</div>
+				<div class="large-6">
+				<br>
+				<span class="tableinfo" style="display:none;">Selected drug: <span id="showDrug"></span></span>	
 				<table id="topten" class="display" style="display:none;">
 			        <thead>
 			            <tr>
-			                <th>Reaction</th>			                
+			                <th>Top 10 Drugs</th>			                
 			            </tr>
 			        </thead>			 
 			    </table>
@@ -92,8 +97,9 @@
 			$(document).foundation(); 
 			
 			$('#myButton').click(function () {	
-				var selectedDrug = $("#drugOption").val();
-				var url2 = "api/adsi/1.0/correlationsReport?drug="+selectedDrug;
+				var selectedReaction = $("#reactionOption").val();
+				$("#showDrug").html(selectedReaction);
+				var url2 = "api/adsi/1.0/topDrugByReaction?reaction="+selectedReaction;
 				$('#topten').dataTable( {
 				        paging: false,
 				        searching: false,
@@ -105,6 +111,7 @@
 				    	ajax: {url : url2}
 				});				
 				$("#topten").show();
+				$(".tableinfo").show();
 			});  
 		</script>
 	</body>
