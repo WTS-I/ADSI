@@ -1,6 +1,5 @@
 package com.wtsintegration.adsi.resources;
 
-import com.wtsintegration.adsi.client.DrugClient;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
 import junit.framework.TestCase;
@@ -30,18 +29,5 @@ public class DrugReactionResourceTest extends TestCase {
 
     public void testGetAllReactions() throws Exception {
         assertEquals(DrugReactionResource.REACTION_NUM, resource.getAllReactions().size());
-    }
-
-    public void testGetCorrelation() throws Exception {
-
-    }
-
-    public void testGetReactionsForDrug() throws Exception {
-        assertEquals(DrugReactionResource.TEN, resource.getReactionsForDrug(IBUPROFEN.getName()).size());
-
-    }
-
-    public void testGetCorrelationReport() throws Exception {
-
     }
 }
