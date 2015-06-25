@@ -63,6 +63,17 @@ public class DrugReactionResource {
 		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), TEN);
 		return UserInterfaceAdapter.convertReactionListToUiString(reactions);
 	}
+	
+	@GET
+	@Path("/topDrugByReaction")
+	public String getDrugsForReaction(@QueryParam("reaction") String reaction) {
+		if(null == reaction) {
+			throw new WebApplicationException("drug query parameter must be present");
+		}
+		List<Drug> drugs = INSTANCE.getTopDrugByReaction(new Reaction(reaction), TEN);
+		return drugs.toString();
+		//return UserInterfaceAdapter.convertReactionListToUiString(reactions);
+	}
 
 	/**
 	 * gets a drug and reaction report of up to 100 records

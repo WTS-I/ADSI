@@ -183,6 +183,41 @@ public class DrugClient {
 		return reactions;
 	}
 	
+	//
+	public List<Drug> getTopDrugByReaction(Reaction reaction, int n) {
+		return getTopDrugByReaction(reaction.getPreferredTerm(), n);
+	}
+	
+	public List<Drug> getTopDrugByReaction(String reaction, int n) {
+		Response response = null;
+		List<Drug> drugs = new ArrayList<Drug>();
+		
+		try {
+			response = webTarget
+					.path(PATH)
+					.queryParam("search", "patient.reaction.reactionmeddrapt:" + reaction)
+					.queryParam("count", "patient.drug.medicinalproduct.exact")
+					.queryParam("limit", String.valueOf(n))
+					.request(MediaType.TEXT_PLAIN_TYPE)
+			        .get(Response.class);
+		} catch (NotFoundException nfe) {
+			return drugs;
+		} catch (Exception e) {
+			System.out.println("DrugClient.getTopReactions: " + e.getMessage());
+		}
+		
+		if (response != null && response.getResults() != null) {
+			for (Result result : response.getResults()) {
+				drugs.add(new Drug(result.getTerm()));
+			}
+		}
+		
+		return drugs;
+	}
+	//
+	
+	
+	
 	public List<Reaction> getTopReactionsByDrug(Drug drug, int n) {
 		return getTopReactionsByDrug(drug.getName(), n);
 	}
