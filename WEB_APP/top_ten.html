@@ -30,21 +30,18 @@
 
 		<div class="row">     
 			<div class="large-9 push-3 columns content">
-				<h3>Drug &amp; Reaction Reports</h3>
-				<img src="./img/shutterstock_98521175.jpg" width="40%" height="40%" style="float:right;"/>
+				<h3>Top Ten Drugs</h3>
+				<img src="./img/shutterstock_70250746.jpg" width="40%" height="40%" style="float:right;"/>
 				<div class="large-6 columns">				
 					<label for="drugOption">Select a drug:</label> <select id="drugOption"></select>
-					<label for="reactionOption">Select a reaction:</label> <select id="reactionOption"></select><br>
 					<button id="myButton">Search</button>
 				</div>				
 				<br><br><br>
 				<div class="large-11">	
-				<table id="report" class="display" cellspacing="0" width="100%" style="display:none;">
+				<table id="topten" class="display" cellspacing="0" width="100%" style="display:none;">
 			        <thead>
 			            <tr>
-			                <th>Patient Gender</th>
-			                <th>Drugs</th>
-			                <th>Reactions</th>			                
+			                <th>Reaction</th>			                
 			            </tr>
 			        </thead>			 
 			    </table>
@@ -96,21 +93,18 @@
 			
 			$('#myButton').click(function () {	
 				var selectedDrug = $("#drugOption").val();
-				var selectedReaction = $("#reactionOption").val();
-				var url2 = "http://localhost:8080/api/adsi/1.0/correlationsReport?drug="+selectedDrug+"&reaction="+selectedReaction;
-				$('#report').dataTable( {
-				        paging: true,
-				        searching: true,
-				        ordering: true,
+				var url2 = "http://localhost:8080/api/adsi/1.0/correlationsReport?drug="+selectedDrug;
+				$('#topten').dataTable( {
+				        paging: false,
+				        searching: false,
+				        ordering: false,
 				        destroy: true,
-				        paginate: true,
+				        paginate: false,
 				        processing: false,
-				        info: true,
-				        pageLength:5,
-				        lengthMenu: [ 3, 5, 10],
+				        info: false,
 				    	ajax: {url : url2}
 				});				
-				$("#report").show();
+				$("#topten").show();
 			});  
 		</script>
 	</body>
