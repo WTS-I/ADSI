@@ -8,7 +8,7 @@ var drugModel = Backbone.Model.extend({
 
 var drugCollection = Backbone.Collection.extend({
 	model : drugModel,
-	url : "http://localhost:8080/api/adsi/1.0/drugs",
+	url : "api/adsi/1.0/drugs",
 	parse : function(response){
 		var self = this;
 		_.each(response, function(drug){
@@ -31,7 +31,7 @@ var reactionModel = Backbone.Model.extend({
 
 var reactionCollection = Backbone.Collection.extend({
 	model : reactionModel,
-	url : "http://localhost:8080/api/adsi/1.0/reactions",
+	url : "api/adsi/1.0/reactions",
 	parse : function(response){
 		var self = this;
 		_.each(response, function(reaction){

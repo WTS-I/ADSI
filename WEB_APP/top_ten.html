@@ -93,7 +93,7 @@
 			
 			$('#myButton').click(function () {	
 				var selectedDrug = $("#drugOption").val();
-				var url2 = "http://localhost:8080/api/adsi/1.0/correlationsReport?drug="+selectedDrug;
+				var url2 = "api/adsi/1.0/correlationsReport?drug="+selectedDrug;
 				$('#topten').dataTable( {
 				        paging: false,
 				        searching: false,
