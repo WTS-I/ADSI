@@ -56,10 +56,10 @@ public class UserInterfaceAdapter {
 	
 	/**
 	 * Creates a UI for the presentation layer string from incoming Reaction array
-	 * @param reactions ArrayList of reactions
+	 * @param list ArrayList of reactions or drugs
 	 * @return String 
 	 */
-	public static String convertReactionListToUiString(List<Reaction> reactions) {
+	public static String convertListToUiString(List<AdsiModelInterface> list) {
 		
 		//example		
 		/*
@@ -84,8 +84,8 @@ public class UserInterfaceAdapter {
 		
 		int recordTotal = 0;
 		
-		if(reactions != null) {
-			recordTotal = reactions.size();
+		if(list != null) {
+			recordTotal = list.size();
 		}
 		
 		//first brace
@@ -94,10 +94,10 @@ public class UserInterfaceAdapter {
 		stringBuffer.append("[\t\n");//start bracket
 		
 		//iterate through the values
-		for(Reaction reaction : reactions) {
+		for(AdsiModelInterface item : list) {
 			stringBuffer.append("\t[");
 			stringBuffer.append("\"");
-			stringBuffer.append(reaction.getPreferredTerm());
+			stringBuffer.append(item.getName());
 			stringBuffer.append("\"");
 			stringBuffer.append("],\n");	
 		}

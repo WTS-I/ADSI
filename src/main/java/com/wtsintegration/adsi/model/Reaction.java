@@ -1,6 +1,6 @@
 package com.wtsintegration.adsi.model;
 
-public class Reaction {
+public class Reaction implements AdsiModelInterface  {
 
 	private String preferredTerm;
 
@@ -17,4 +17,10 @@ public class Reaction {
 	public void setPreferredTerm(String preferredTerm) {
 		this.preferredTerm = preferredTerm;
 	}
+
+	public String getName() {
+		return preferredTerm;
+	}
+	
+	
 }

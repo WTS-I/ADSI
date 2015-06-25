@@ -8,6 +8,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 
 import com.wtsintegration.adsi.client.DrugClient;
+import com.wtsintegration.adsi.model.AdsiModelInterface;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.DrugReactionCorrelation;
 import com.wtsintegration.adsi.model.Reaction;
@@ -60,8 +61,8 @@ public class DrugReactionResource {
 		if(null == drug) {
 			throw new WebApplicationException("drug query parameter must be present");
 		}
-		List<Reaction> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), TEN);
-		return UserInterfaceAdapter.convertReactionListToUiString(reactions);
+		List<AdsiModelInterface> reactions = INSTANCE.getTopReactionsByDrug(new Drug(drug), TEN);
+		return UserInterfaceAdapter.convertListToUiString(reactions);
 	}
 	
 	@GET
@@ -70,9 +71,8 @@ public class DrugReactionResource {
 		if(null == reaction) {
 			throw new WebApplicationException("drug query parameter must be present");
 		}
-		List<Drug> drugs = INSTANCE.getTopDrugByReaction(new Reaction(reaction), TEN);
-		return drugs.toString();
-		//return UserInterfaceAdapter.convertReac;ionListToUiString(reactions);
+		List<AdsiModelInterface> drugs = INSTANCE.getTopDrugByReaction(new Reaction(reaction), TEN);
+		return UserInterfaceAdapter.convertListToUiString(drugs);
 	}
 
 	/**

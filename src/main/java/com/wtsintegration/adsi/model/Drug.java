@@ -1,6 +1,6 @@
 package com.wtsintegration.adsi.model;
 
-public class Drug {
+public class Drug implements AdsiModelInterface {
 
 	private String name;
 

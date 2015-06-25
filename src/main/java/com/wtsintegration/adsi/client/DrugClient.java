@@ -15,6 +15,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 
 import com.wtsintegration.adsi.client.jaxb.Response;
 import com.wtsintegration.adsi.client.jaxb.Result;
+import com.wtsintegration.adsi.model.AdsiModelInterface;
 import com.wtsintegration.adsi.model.Drug;
 import com.wtsintegration.adsi.model.Reaction;
 import com.wtsintegration.openfda.model.FdaPatientDrugResponse;
@@ -189,7 +190,7 @@ public class DrugClient {
 	 * @param n number of drug limit list
 	 * @return Array of Drugs
 	 */
-	public List<Drug> getTopDrugByReaction(Reaction reaction, int n) {
+	public List<AdsiModelInterface> getTopDrugByReaction(Reaction reaction, int n) {
 		return getTopDrugByReaction(reaction.getPreferredTerm(), n);
 	}
 	
@@ -199,9 +200,9 @@ public class DrugClient {
 	 * @param n number of drug limit list
 	 * @return Array of Drugs
 	 */
-	public List<Drug> getTopDrugByReaction(String reaction, int n) {
+	public List<AdsiModelInterface> getTopDrugByReaction(String reaction, int n) {
 		Response response = null;
-		List<Drug> drugs = new ArrayList<Drug>();
+		List<AdsiModelInterface> drugs = new ArrayList<AdsiModelInterface>();
 		
 		try {
 			response = webTarget
@@ -214,7 +215,7 @@ public class DrugClient {
 		} catch (NotFoundException nfe) {
 			return drugs;
 		} catch (Exception e) {
-			System.out.println("DrugClient.getTopReactions: " + e.getMessage());
+			System.out.println("DrugClient.getTopDrugByReaction: " + e.getMessage());
 		}
 		
 		if (response != null && response.getResults() != null) {
@@ -226,13 +227,13 @@ public class DrugClient {
 		return drugs;
 	}
 		
-	public List<Reaction> getTopReactionsByDrug(Drug drug, int n) {
+	public List<AdsiModelInterface> getTopReactionsByDrug(Drug drug, int n) {
 		return getTopReactionsByDrug(drug.getName(), n);
 	}
 	
-	public List<Reaction> getTopReactionsByDrug(String drug, int n) {
+	public List<AdsiModelInterface> getTopReactionsByDrug(String drug, int n) {
 		Response response = null;
-		List<Reaction> reactions = new ArrayList<Reaction>();
+		List<AdsiModelInterface> reactions = new ArrayList<AdsiModelInterface>();
 		
 		try {
 			response = webTarget
