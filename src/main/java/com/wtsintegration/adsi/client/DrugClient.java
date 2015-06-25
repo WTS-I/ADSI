@@ -183,11 +183,22 @@ public class DrugClient {
 		return reactions;
 	}
 	
-	//
+	/**
+	 * Returns the top drugs for a given reaction
+	 * @param reaction the reaction you are looking for
+	 * @param n number of drug limit list
+	 * @return Array of Drugs
+	 */
 	public List<Drug> getTopDrugByReaction(Reaction reaction, int n) {
 		return getTopDrugByReaction(reaction.getPreferredTerm(), n);
 	}
 	
+	/**
+	 * Returns the top drugs for a given reaction
+	 * @param reaction the reaction you are looking for
+	 * @param n number of drug limit list
+	 * @return Array of Drugs
+	 */
 	public List<Drug> getTopDrugByReaction(String reaction, int n) {
 		Response response = null;
 		List<Drug> drugs = new ArrayList<Drug>();
@@ -214,10 +225,7 @@ public class DrugClient {
 		
 		return drugs;
 	}
-	//
-	
-	
-	
+		
 	public List<Reaction> getTopReactionsByDrug(Drug drug, int n) {
 		return getTopReactionsByDrug(drug.getName(), n);
 	}

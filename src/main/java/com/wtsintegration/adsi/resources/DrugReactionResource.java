@@ -72,7 +72,7 @@ public class DrugReactionResource {
 		}
 		List<Drug> drugs = INSTANCE.getTopDrugByReaction(new Reaction(reaction), TEN);
 		return drugs.toString();
-		//return UserInterfaceAdapter.convertReactionListToUiString(reactions);
+		//return UserInterfaceAdapter.convertReac;ionListToUiString(reactions);
 	}
 
 	/**
