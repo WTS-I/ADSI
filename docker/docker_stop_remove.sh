@@ -1,4 +1,6 @@
 #!/bin/bash
+pwd
+
 docker stop api_wts_adsi
 docker stop apache_wts_adsi
 
