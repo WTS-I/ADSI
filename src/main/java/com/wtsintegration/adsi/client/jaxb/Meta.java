@@ -17,7 +17,7 @@ public class Meta {
 	private String last_updated;
 	
 	@XmlElement
-	private MetaResults results;
+	private MetResults results;
 
 	public Meta() {
 		super();
