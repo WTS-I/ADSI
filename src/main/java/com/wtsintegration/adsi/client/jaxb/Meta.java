@@ -23,7 +23,7 @@ public class Meta {
 		super();
 	}
 
-	public Strong getDisclaimer() {
+	public String getDisclaimer() {
 		return disclaimer;
 	}
 
