@@ -48,6 +48,10 @@ public class PresentationDataRow {
 	
 	public String toString() {
 		
+		
+		if(presentationRow == null) {
+			return "";
+		}
 		//example		
 		/*
 		[

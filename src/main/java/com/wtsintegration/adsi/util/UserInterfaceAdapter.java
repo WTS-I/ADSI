@@ -61,6 +61,10 @@ public class UserInterfaceAdapter {
 	 */
 	public static String convertListToUiString(List<AdsiModelInterface> list) {
 		
+		if (list == null) {
+			return "";
+		}
+		
 		//example		
 		/*
 		
