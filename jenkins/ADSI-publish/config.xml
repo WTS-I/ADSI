@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+ <maven2-moduleset plugin="maven-plugin@2.10">
+   <actions/>
+   <description></description>
+   <keepDependencies>false</keepDependencies>
+   <properties>
+     <hudson.model.ParametersDefinitionProperty>
+       <parameterDefinitions>
+         <hudson.model.StringParameterDefinition>
+           <name>SOURCE_BUILD</name>
+           <description></description>
+           <defaultValue></defaultValue>
+         </hudson.model.StringParameterDefinition>
+         <hudson.model.StringParameterDefinition>
+           <name>VERSION_NUMBER</name>
+           <description></description>
+           <defaultValue></defaultValue>
+         </hudson.model.StringParameterDefinition>
+       </parameterDefinitions>
+     </hudson.model.ParametersDefinitionProperty>
+   </properties>
+   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.3.5">
+     <configVersion>2</configVersion>
+     <userRemoteConfigs>
+       <hudson.plugins.git.UserRemoteConfig>
+         <name>origin</name>
+         <url>https://github.com/WTS-I/ADSI</url>
+         <credentialsId>7c289251-fea9-4827-9324-23f466df1871</credentialsId>
+       </hudson.plugins.git.UserRemoteConfig>
+     </userRemoteConfigs>
+     <branches>
+       <hudson.plugins.git.BranchSpec>
+         <name>refs/tags/DEV_${SOURCE_BUILD}</name>
+       </hudson.plugins.git.BranchSpec>
+     </branches>
+     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+     <submoduleCfg class="list"/>
+     <extensions>
+       <hudson.plugins.git.extensions.impl.CleanBeforeCheckout/>
+     </extensions>
+   </scm>
+   <canRoam>true</canRoam>
+   <disabled>false</disabled>
+   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+   <triggers/>
+   <concurrentBuild>false</concurrentBuild>
+   <rootModule>
+     <groupId>com.wtsintegration</groupId>
+     <artifactId>adsi</artifactId>
+   </rootModule>
+   <aggregatorStyleBuild>true</aggregatorStyleBuild>
+   <incrementalBuild>false</incrementalBuild>
+   <ignoreUpstremChanges>true</ignoreUpstremChanges>
+   <archivingDisabled>false</archivingDisabled>
+   <siteArchivingDisabled>false</siteArchivingDisabled>
+   <fingerprintingDisabled>false</fingerprintingDisabled>
+   <resolveDependencies>false</resolveDependencies>
+   <processPlugins>false</processPlugins>
+   <mavenValidationLevel>-1</mavenValidationLevel>
+   <runHeadless>false</runHeadless>
+   <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
+   <blockTriggerWhenBuilding>true</blockTriggerWhenBuilding>
+   <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+   <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+   <reporters/>
+   <publishers>
+     <hudson.tasks.ArtifactArchiver>
+       <artifacts>docker/,WEB_APP/</artifacts>
+       <allowEmptyArchive>false</allowEmptyArchive>
+       <onlyIfSuccessful>false</onlyIfSuccessful>
+       <fingerprint>false</fingerprint>
+       <defaultExcludes>true</defaultExcludes>
+     </hudson.tasks.ArtifactArchiver>
+   </publishers>
+   <buildWrappers/>
+   <prebuilders/>
+   <postbuilders>
+     <hudson.tasks.Shell>
+       <command>mkdir com.wtsintegration
+ mkdir com.wtsintegration/adsi
+ mkdir com.wtsintegration/adsi/1.0
+ cp target/adsi-1.0.jar com.wtsintegration/adsi/1.0/
+ bash docker/docker_build_run.sh ${VERSION_NUMBER}</command>
+     </hudson.tasks.Shell>
+     <hudson.tasks.Shell>
+       <command>bash docker/docker_publish.sh ${VERSION_NUMBER}</command>
+     </hudson.tasks.Shell>
+   </postbuilders>
+   <runPostStepsIfResult>
+     <name>FAILURE</name>
+     <ordinal>2</ordinal>
+     <color>RED</color>
+     <completeBuild>true</completeBuild>
+   </runPostStepsIfResult>
+ </maven2-moduleset>
