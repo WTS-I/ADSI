@@ -1,10 +1,11 @@
 package com.wtsintegration.adsi.client.jaxb;
 
-import junit.framework.TestCase;
-import org.mockito.Mock;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import junit.framework.TestCase;
+
+import com.wtsintegration.adsi.client.jaxb.Response.ResultComparator;
 
 /**
  * Created by zmelnick on 6/23/15.
@@ -45,5 +46,24 @@ public class ResponseTest extends TestCase {
         List<Result> resultList = new ArrayList<Result>();
         response.setResults(resultList);
         assertTrue(resultList == response.getResults());
+    }
+    
+    public void testResultsSortNull() throws Exception {
+        response.setResults(null);
+        assertNull(response.getResults());
+    }
+    
+    public void testResultsSort() throws Exception {
+        Result result1 = new Result();
+        result1.setTerm("ZZZ");
+        Result result2 = new Result();
+        result2.setTerm("AAA");
+        List<Result> list = new ArrayList<Result>();
+        list.add(result1);
+        list.add(result2);
+        
+        response.setResults(list);
+        assertTrue(response.getResults().size() == 2);
+        assertTrue(response.getResults().get(0).getTerm().equals("AAA"));
     }
 }
