@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Meta {
 
 	@XmlElement
-	private Strong disclaimer;
+	private String disclaimer;
 	@XmlElement
 	private String license;
 	@XmlElement
