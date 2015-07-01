@@ -48,19 +48,17 @@
 			                <th>Proportional Reporting Ratio (PRR)</th>		               
 			                <th>Reporting Odds Ratio (ROR)</th>			                
 			            </tr>
-			        </thead>			 
+			        </thead>
 			    </table>
 			    
 			   
 			   <div class="large-10 columns">
-				    ROR=AD/BC<br>
-					PRR=(A*(C+D))/(C*(A+B))<br>
-					RRR=(A*T)/((A+B)*(A+C))<br>
-					A=Number of patient reports with both drug and reaction<br>
-					B=Number of patient reports with drug, without reaction<br>
-					C=Number of patient reports without drug, with reaction<br>
-					D=Number of patient reports without drug, without reaction<br>				    
-					<br>            
+					A = Number of patient reports in which the patient took the drug and experienced the reaction<br><br>
+					B = Number of patient reports in which the patient took the drug, but did not experience the reaction<br><br>
+					C = Number of patient reports in which the patient did not take the drug, but did experience the reaction<br><br>
+					D = Number of patient reports in which the patient did not take the drug and did not experience the reaction<br><br>				    
+					T = Total number of patient reports<br><br>
+					            
 					The proportional reporting ratio (PRR) is a statistic that is used to summarize the extent to which a particular adverse 
 					event is reported for individuals taking a specific drug, compared to the frequency at which the same adverse event is reported for patients 
 					taking some other drug (or who are taking any drug in a specified class of drugs). <sup><small>1</small></sup>
@@ -78,9 +76,9 @@
 			<div class="large-3 pull-9 columns panel">				
 				<ul class="side-nav">
 					<li><a href="./index.html">Home</a></li>
-					<li><a href="./reporting_ratios.html">Reporting Ratios</a></li>
-					<li><a href="./drug_reactions.html">Drug &amp; Reactions Reports</a></li>
-					<li><a href="./top_ten.html">Top Ten Drugs</a></li>
+					<li><a href="./top_ten.html">Step 1: Top Ten Drugs</a></li>
+					<li><a href="./reporting_ratios.html">Step 2: Reporting Ratios</a></li>
+					<li><a href="./drug_reactions.html">Step 3: Drug &amp; Reactions Reports</a></li>
 				</ul>
 			</div>
 		</div>
@@ -132,8 +130,26 @@
 				        paginate: false,
 				        processing: false,
 				        info: false,
+				        aoColumnDefs: [ {
+				            "aTargets": [2,3,4],
+				            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+				            	if(iCol == 2){
+				            		$(nTd).attr('title', 'ROR = AD / BC');
+				            	}
+				            	if(iCol == 3){
+				            		$(nTd).attr('title', 'PRR = (A*(C+D)) / (C*(A+B))');
+				            	}
+				            	if(iCol == 4){
+				            		$(nTd).attr('title', 'RRR = (A*T) / ((A+B) * (A+C))');
+				            	}
+				            	$(nTd).attr('class', 'has-tip');
+				                $(nTd).attr('data-tooltip', '');
+				                $(nTd).attr("aria-haspopup", "true");
+				                $(document).foundation('tooltip', 'reflow');
+				            }
+				          } ],
 				    	ajax: {url : url2}
-				});				
+				});
 				$("#ratios").show();				
 			}); 
 		</script>
