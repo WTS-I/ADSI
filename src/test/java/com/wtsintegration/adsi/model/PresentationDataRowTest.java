@@ -62,4 +62,27 @@ public class PresentationDataRowTest extends TestCase {
 		assertFalse(s2.equals(""));
 		assertTrue(s2.length() > 0);
 	}
+	
+	public void testToString3() throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		row.setPresentationRow(map);
+		String keys = "";
+		
+		String s2 = row.toString(keys);
+		assertNotNull(s2);
+		assertFalse(s2.equals(""));
+		assertTrue(s2.length() > 0);
+	}
+	
+	public void testToString4() throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("test", "value");
+		row.setPresentationRow(map);
+		String keys = "test";
+		
+		String s2 = row.toString(keys);
+		assertNotNull(s2);
+		assertFalse(s2.equals(""));
+		assertTrue(s2.length() > 0);
+	}
 }
