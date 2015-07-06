@@ -1,7 +1,8 @@
 #!/bin/bash
 pwd
 
-if [ -z "$1" ] then
+if [ -z "$1" ] 
+  then
   thetag=ci
 else
   thetag=$1
