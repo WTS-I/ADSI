@@ -101,6 +101,6 @@ Please see [ADSI Installation Instructions] (/metadata/install/Install.pdf).
 
 #### Licensing 
 
-All ADSI code, images, and other artifacts are openly available and free of charge.  Please see [The ADSI License] (/license).
+All ADSI code, images, and other artifacts are openly available and free of charge.  Please see [The ADSI License] (/LICENSE).
 
 All included third-party software and libraries are open source and free of charge.  Please see [ADSI Third-Party Dependencies] (/third-party/dependencies.html).
