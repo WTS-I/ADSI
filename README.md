@@ -102,4 +102,4 @@ All ADSI code, images, and other artifacts are openly available and free of char
 All included third-party software and libraries are open source and free of charge.  Please see [ADSI Third-Party Dependencies] (/third-party/dependencies.html).
 
 <Word Count = 743 (MS Word 2013)>
-<Word Count = 745 (TextPad 5.4)>
+<Word Count = 749 (TextPad 5.4)>
