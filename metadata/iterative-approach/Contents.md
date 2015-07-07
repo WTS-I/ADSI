@@ -16,7 +16,7 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Estimation  |  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prioritization  |  [Link] (/metadata/iterative-approach/Protosketching/Sprint_Planning_and_Estimation.jpg)  |
 | &nbsp;&nbsp;&nbsp;*Execution*  |  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToDo->InProg->InReview  |  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToDo->InProg->InReview  | [Link] (/metadata/iterative-approach/Protosketching/ADSI_Sprint_in_Flight.jpg)  | |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Daily Standup  |   |
 | &nbsp;&nbsp;&nbsp;*Introspection*  |  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Code and Test Review |   |
