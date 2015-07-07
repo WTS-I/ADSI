@@ -6,8 +6,7 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personas  | [Link] (/metadata/iterative-approach/Protosketching/Protosketching_Personas.jpg)  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User Goals  | [Link] (/metadata/iterative-approach/Protosketching/Protoskecthing_User_Goals.jpg)  |
 | &nbsp;&nbsp;&nbsp;*Bootstrap*  |  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provision DevOps Infrastructure  |  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configure Development Environment  |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provision DevOps Infrastructure  |  [Link] (/metadata/iterative-approach/Inception/Inception_Execution_Highlighting_Scope.jpg) |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preliminary Technology Discussion  | [Link] (/metadata/iterative-approach/Inception/Inception_Planning_and_Initial_Design.jpg)  |
 |  |  |
 | **Execution (Sprints 1,2,3)**  | [Link] (/metadata/iterative-approach/Iterative_Development.pptx) |
