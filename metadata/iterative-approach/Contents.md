@@ -7,14 +7,13 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User Goals  | [Link] (/metadata/iterative-approach/Protosketching/Protoskecthing_User_Goals.jpg)  |
 | &nbsp;&nbsp;&nbsp;*Bootstrap*  |  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provision DevOps Infrastructure  |  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build CI Skeleton  |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configure Development Environment  |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preliminary Technology Discussion  | [Link] (/metadata/iterative-approach/Protosketching/Inception_Planning_and_Initial_Design.jpg)  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preliminary Technology Discussion  | [Link] (/metadata/iterative-approach/Inception/Inception_Planning_and_Initial_Design.jpg)  |
 |  |  |
-| **Execution (Sprints 1,2,3)**  | [Link] (/metadata/iterative-approach/Protosketching/Iterative_Development.pptx) |
+| **Execution (Sprints 1,2,3)**  | [Link] (/metadata/iterative-approach/Iterative_Development.pptx) |
 | &nbsp;&nbsp;&nbsp;*Planning*  |  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Estimation  |  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prioritization  |  [Link] (/metadata/iterative-approach/Protosketching/Sprint_Planning_and_Estimation.jpg)  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sprint Backlog  |  [Link] (/metadata/iterative-approach/Sprint_Planning.jpg)  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Estimation and Prioritization |  [Link] (/metadata/iterative-approach/Sprint_Backlog_Estimation_and_Prioritization.jpg)  |
 | &nbsp;&nbsp;&nbsp;*Execution*  |  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToDo->InProg->InReview  | [Link] (/metadata/iterative-approach/Protosketching/ADSI_Sprint_in_Flight.jpg)  | |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Daily Standup  |   |
