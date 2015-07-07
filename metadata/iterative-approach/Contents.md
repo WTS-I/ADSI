@@ -15,11 +15,11 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sprint Backlog  |  [Link] (/metadata/iterative-approach/Sprint_Planning.jpg)  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Estimation and Prioritization |  [Link] (/metadata/iterative-approach/Sprint_Backlog_Estimation_and_Prioritization.jpg)  |
 | &nbsp;&nbsp;&nbsp;*Execution*  |  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToDo->InProg->InReview  | [Link] (/metadata/iterative-approach/Protosketching/ADSI_Sprint_in_Flight.jpg)  | |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Daily Standup  |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToDo->InProg->InReview  | [Link] (/metadata/iterative-approach/ADSI_Sprint_in_Flight.jpg)  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Daily Standup  |  |
 | &nbsp;&nbsp;&nbsp;*Introspection*  |  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Code and Test Review |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demo and Feedback  |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demo and Feedback  | [Link] (/metadata/iterative-approach/Sprint-1/First_MVP_Review.jpg)  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retrospective  |  |
 |  |  |
 | **User-Centric Design**  |  |
