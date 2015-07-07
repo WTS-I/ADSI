@@ -25,7 +25,7 @@ See [Applied Technologies] (/metadata/modern-open-source-technologies/Technology
 
 The ADSI code is built on and deployed to the Amazon Web Services (AWS) cloud.
 
-Please see [IaaS Artifacts Contents] (/metadata/infrastructure-as-a-service/Contents.md)
+Please see [IaaS Artifacts Contents] (/metadata/infrastructure-as-a-service/Contents.md).
 
 #### Unit Tests
 
@@ -72,14 +72,15 @@ See [Continuous Monitoring Artifacts Contents] (/metadata/continuous-monitoring/
 
 #### Container Deployment
 
-ADSI's deployment strategy included the definition/publication of two Docker images (UI and API). These images are the inputs for containers that can be scaled and managed independently.
+ADSI's deployment strategy included the definition/publication of two Docker images (UI and API). These images are inputs for containers that are scaled and managed independently.
 
 The ADSI Dockerfiles can be found [Here] (/docker/) and the published images in [DockerHub] (https://registry.hub.docker.com/repos/wtsintegration/)
 
 #### Iterative Approach
 
 WTS applied an iterative approach to ADSI development. Three functional iterations (sprints) were preceded by an inception phase.
-Inception: The team undertook preliminary design activities. Employing WTS space as a war room, the team held a Protosketching session to postulate initial work patterns and personas. A preliminary user interface and product backlog were established. The Sprint 1 backlog defined a minimum viable product (MVP). The team also bootstrapped JIRA and Jenkins environments for MVP production.
+
+Inception: The team undertook preliminary design activities. Employing WTS space as a war-room, the team held a Protosketching session to postulate initial work patterns and personas. A preliminary user interface and product backlog were established. The Sprint 1 backlog defined a minimum viable product (MVP). The team also bootstrapped JIRA and Jenkins environments for MVP production.
 
 Execution: A Sprint Planning ceremony yielded inception artifacts used for creation, estimation and self-assignment of stories. Team members developed code and unit tests. They maintained CM artifacts and contributed to evolving CI scripts to facilitate automated testing and deployment. 
 
