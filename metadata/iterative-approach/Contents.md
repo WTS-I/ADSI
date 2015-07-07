@@ -3,8 +3,8 @@
 | **Inception**  |  |
 | &nbsp;&nbsp;&nbsp;*Protosketching*  |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Work Patterns  | [Link] (/metadata/iterative-approach/Protosketching/Protosketching_Behavior_Patterns.jpg)  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personas  | [Link] (/metadata/iterative-approach/Protosketching_Personas.jpg)  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Initial User Interface  | [Link] (/metadata/iterative-approach/xxx)  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personas  | [Link] (/metadata/iterative-approach/Protosketching/Protosketching_Personas.jpg)  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User Goals  | [Link] (/metadata/iterative-approach/Protosketching/Protoskecthing_User_Goals.jpg)  |
 | &nbsp;&nbsp;&nbsp;*Bootstrap*  |  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provision DevOps Infrastructure  | [Link] (/metadata/iterative-approach/xxx)  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build CI Skeleton  | [Link] (/metadata/iterative-approach/xxx)  |
