@@ -1,0 +1,233 @@
+Building in workspace /var/lib/jenkins/jobs/ADSI-publish/workspace
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/WTS-I/ADSI # timeout=10
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -fdx # timeout=10
+Fetching upstream changes from https://github.com/WTS-I/ADSI
+ > git --version # timeout=10
+using .gitcredentials to set credentials
+ > git config --local credential.helper store --file=/tmp/git4226949469586620743.credentials # timeout=10
+ > git -c core.askpass=true fetch --tags --progress https://github.com/WTS-I/ADSI +refs/heads/*:refs/remotes/origin/*
+ > git config --local --remove-section credential # timeout=10
+ > git rev-parse refs/tags/DEV_93^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/refs/tags/DEV_93^{commit} # timeout=10
+Checking out Revision 5ad7343790d201bd11706f8c31a9c8a116dd1954 (refs/tags/DEV_93)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 5ad7343790d201bd11706f8c31a9c8a116dd1954
+First time build. Skipping changelog.
+Parsing POMs
+...
+[workspace] $ /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.79.x86_64//bin/java -cp /var/lib/jenkins/plugins/maven-plugin/WEB-INF/lib/maven32-agent-1.6.jar:/usr/share/apache-maven/boot/plexus-classworlds-2.5.2.jar:/usr/share/apache-maven/conf/logging jenkins.maven3.agent.Maven32Main /usr/share/apache-maven /var/cache/jenkins/war/WEB-INF/lib/remoting-2.50.jar /var/lib/jenkins/plugins/maven-plugin/WEB-INF/lib/maven32-interceptor-1.6.jar /var/lib/jenkins/plugins/maven-plugin/WEB-INF/lib/maven3-interceptor-commons-1.6.jar 50402
+<===[JENKINS REMOTING CAPACITY]===>???channel started
+Executing Maven:  -B -f /var/lib/jenkins/jobs/ADSI-publish/workspace/pom.xml clean install -DskipTests=true
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing /var/lib/jenkins/jobs/ADSI-publish/workspace/target/adsi-1.0.jar with /var/lib/jenkins/jobs/ADSI-publish/workspace/target/adsi-1.0-shaded.jar
+[INFO] Dependency-reduced POM written at: /var/lib/jenkins/jobs/ADSI-publish/workspace/dependency-reduced-pom.xml
+...
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ adsi ---
+[INFO] Installing /var/lib/jenkins/jobs/ADSI-publish/workspace/target/adsi-1.0.jar to /var/lib/jenkins/.m2/repository/com/wtsintegration/adsi/1.0/adsi-1.0.jar
+[INFO] Installing /var/lib/jenkins/jobs/ADSI-publish/workspace/dependency-reduced-pom.xml to /var/lib/jenkins/.m2/repository/com/wtsintegration/adsi/1.0/adsi-1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 23.480 s
+[INFO] Finished at: 2015-07-06T03:16:47+00:00
+[INFO] Final Memory: 24M/75M
+[INFO] ------------------------------------------------------------------------
+...
+[JENKINS] Archiving /var/lib/jenkins/jobs/ADSI-publish/workspace/dependency-reduced-pom.xml to com.wtsintegration/adsi/1.0/adsi-1.0.pom
+[JENKINS] Archiving /var/lib/jenkins/jobs/ADSI-publish/workspace/target/adsi-1.0.jar to com.wtsintegration/adsi/1.0/adsi-1.0.jar
+[workspace] $ /bin/sh -xe /tmp/hudson5974108211236032579.sh
++ mkdir com.wtsintegration
++ mkdir com.wtsintegration/adsi
++ mkdir com.wtsintegration/adsi/1.0
++ cp target/adsi-1.0.jar com.wtsintegration/adsi/1.0/
+channel stopped
++ cp LICENSE target/
++ bash docker/docker_build_run.sh 0.3
+/var/lib/jenkins/jobs/ADSI-publish/workspace
+Sending build context to Docker daemon 557.1 kB
+Sending build context to Docker daemon 1.114 MB
+Sending build context to Docker daemon 1.671 MB
+Sending build context to Docker daemon 2.228 MB
+Sending build context to Docker daemon 2.672 MB
+
+Sending build context to Docker daemon 
+Step 0 : FROM httpd:2.4
+ ---> de94ed779434
+Step 1 : COPY ./htdocs/ /usr/local/apache2/htdocs/
+ ---> 428ae91d4cbd
+Removing intermediate container d259b430dfd1
+Step 2 : EXPOSE 80
+ ---> Running in 013636ff1195
+ ---> 0cdf2e79660c
+Removing intermediate container 013636ff1195
+Step 3 : ADD LICENSE LICENSE
+ ---> a99f66eef220
+Removing intermediate container df4316023265
+Step 4 : MAINTAINER mark.horwath@wtsintegration.com
+ ---> Running in 3ca7d38ac2fe
+ ---> 61706cd3ccfb
+Removing intermediate container 3ca7d38ac2fe
+Step 5 : LABEL Description "This image is used for the HTTP content portion of the WTS ADSI sample application, built from github (https://github.com/WTS-I/ADSI) tag DEV_${SOURCE_BUILD}"
+ ---> Running in b6c366cb27e6
+ ---> 23f6266aacf3
+Removing intermediate container b6c366cb27e6
+Successfully built 23f6266aacf3
+
+Sending build context to Docker daemon 557.1 kB
+Sending build context to Docker daemon 1.114 MB
+Sending build context to Docker daemon 1.671 MB
+Sending build context to Docker daemon 2.228 MB
+Sending build context to Docker daemon 2.785 MB
+Sending build context to Docker daemon 3.342 MB
+Sending build context to Docker daemon 3.899 MB
+Sending build context to Docker daemon 4.456 MB
+Sending build context to Docker daemon 5.014 MB
+Sending build context to Docker daemon 5.571 MB
+Sending build context to Docker daemon 6.128 MB
+Sending build context to Docker daemon 6.685 MB
+Sending build context to Docker daemon 7.242 MB
+Sending build context to Docker daemon 7.799 MB
+Sending build context to Docker daemon 8.356 MB
+Sending build context to Docker daemon 8.913 MB
+Sending build context to Docker daemon  9.47 MB
+Sending build context to Docker daemon 10.03 MB
+Sending build context to Docker daemon 10.58 MB
+Sending build context to Docker daemon 11.14 MB
+Sending build context to Docker daemon  11.7 MB
+Sending build context to Docker daemon 12.26 MB
+Sending build context to Docker daemon 12.81 MB
+Sending build context to Docker daemon 13.37 MB
+Sending build context to Docker daemon 13.93 MB
+Sending build context to Docker daemon 14.48 MB
+Sending build context to Docker daemon 15.04 MB
+Sending build context to Docker daemon  15.6 MB
+Sending build context to Docker daemon 16.15 MB
+Sending build context to Docker daemon 16.71 MB
+Sending build context to Docker daemon 16.97 MB
+
+Sending build context to Docker daemon 
+Step 0 : FROM java:8-jre
+ ---> 45a4bb374fcb
+Step 1 : MAINTAINER mark.horwath@wtsintegration.com
+ ---> Using cache
+ ---> dfdc50d67df6
+Step 2 : EXPOSE 8880
+ ---> Using cache
+ ---> ccf598c0a61f
+Step 3 : CMD java -jar adsi-1.0.jar port=8880
+ ---> Using cache
+ ---> d0430cb43666
+Step 4 : ADD adsi-1.0.jar adsi-1.0.jar
+ ---> c33e36741c56
+Removing intermediate container 89d06d0fa7c4
+Step 5 : ADD LICENSE LICENSE
+ ---> 637bf0491ca8
+Removing intermediate container a1e05bc65550
+Step 6 : LABEL Description "This image is used for the Java ADSI portion of the WTS ADSI sample application, built from github (https://github.com/WTS-I/ADSI) tag DEV_${SOURCE_BUILD}"
+ ---> Running in 79970891987b
+ ---> 56a8161f0797
+Removing intermediate container 79970891987b
+Successfully built 56a8161f0797
+[workspace] $ /bin/sh -xe /tmp/hudson5087238769759269315.sh
++ bash docker/docker_publish.sh 0.3
+The push refers to a repository [wtsintegration/api-wtsadsi] (len: 1)
+56a8161f0797: Buffering to Disk
+56a8161f0797: Image successfully pushed
+56a8161f0797: Image already exists
+637bf0491ca8: Buffering to Disk
+637bf0491ca8: Image successfully pushed
+c33e36741c56: Buffering to Disk
+c33e36741c56: Image successfully pushed
+d0430cb43666: Image already exists
+ccf598c0a61f: Image already exists
+dfdc50d67df6: Image already exists
+45a4bb374fcb: Image already exists
+ea01e8335909: Image already exists
+6351c048f854: Image already exists
+c4cf2000fb4b: Image already exists
+8d71974db923: Image already exists
+4a580b1fdee5: Image already exists
+6f06c2811a86: Image already exists
+e96a900a1f99: Image already exists
+87de57de6955: Image already exists
+bf84c1d84a8f: Image already exists
+64e5325c0d9d: Image already exists
+Digest: sha256:55b45357bf29fb088ddc26ab4948babd110ac8be53d988b60ab258de90f8a3d7
+The push refers to a repository [wtsintegration/apache-wtsadsi] (len: 1)
+23f6266aacf3: Buffering to Disk
+23f6266aacf3: Image successfully pushed
+23f6266aacf3: Image already exists
+61706cd3ccfb: Buffering to Disk
+61706cd3ccfb: Image successfully pushed
+a99f66eef220: Buffering to Disk
+a99f66eef220: Image successfully pushed
+0cdf2e79660c: Buffering to Disk
+0cdf2e79660c: Image successfully pushed
+428ae91d4cbd: Buffering to Disk
+428ae91d4cbd: Image successfully pushed
+de94ed779434: Image already exists
+ee4d515e8896: Image already exists
+1fb661afda9f: Image already exists
+5c405ca8c94d: Image already exists
+2b1597dc71ff: Image already exists
+06deff27c05b: Image already exists
+9155aba0344d: Image already exists
+41f5cdce27f3: Image already exists
+183a736359e7: Image already exists
+5e5a25bf7039: Image already exists
+248bbb739a15: Image already exists
+6c1a7f5286ab: Image already exists
+bf84c1d84a8f: Image already exists
+64e5325c0d9d: Image already exists
+Digest: sha256:97d69a492c5337703a8a3d4325ddeb841193fdd9d6b66bf13101d99754d56ca9
+The push refers to a repository [wtsintegration/api-wtsadsi] (len: 1)
+56a8161f0797: Image already exists
+56a8161f0797: Image already exists
+637bf0491ca8: Image already exists
+c33e36741c56: Image already exists
+d0430cb43666: Image already exists
+ccf598c0a61f: Image already exists
+dfdc50d67df6: Image already exists
+45a4bb374fcb: Image already exists
+ea01e8335909: Image already exists
+6351c048f854: Image already exists
+c4cf2000fb4b: Image already exists
+8d71974db923: Image already exists
+4a580b1fdee5: Image already exists
+6f06c2811a86: Image already exists
+e96a900a1f99: Image already exists
+87de57de6955: Image already exists
+bf84c1d84a8f: Image already exists
+64e5325c0d9d: Image already exists
+Digest: sha256:3335d3d4b26eaf6db8ba09290bd9a642ca2e1063addaf6450c9e7820ac26eed9
+The push refers to a repository [wtsintegration/apache-wtsadsi] (len: 1)
+23f6266aacf3: Image already exists
+23f6266aacf3: Image already exists
+61706cd3ccfb: Image already exists
+a99f66eef220: Image already exists
+0cdf2e79660c: Image already exists
+428ae91d4cbd: Image already exists
+de94ed779434: Image already exists
+ee4d515e8896: Image already exists
+1fb661afda9f: Image already exists
+5c405ca8c94d: Image already exists
+2b1597dc71ff: Image already exists
+06deff27c05b: Image already exists
+9155aba0344d: Image already exists
+41f5cdce27f3: Image already exists
+183a736359e7: Image already exists
+5e5a25bf7039: Image already exists
+248bbb739a15: Image already exists
+6c1a7f5286ab: Image already exists
+bf84c1d84a8f: Image already exists
+64e5325c0d9d: Image already exists
+Digest: sha256:d8e34a12aae189513f6a71091919d7bd04d1dfcf3a2db5ad48b2d0158af4e4b7
+Archiving artifacts
+Finished: SUCCESS
